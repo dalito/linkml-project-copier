@@ -10,7 +10,7 @@ A [copier](https://copier.readthedocs.io/) template for projects using [LinkML](
 
 ## Prerequisites
 
-The following are required and recommended tools for using this cookiecutter and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access. If not please read our section on `working in isolated environments` (tbw).
+The following are required and recommended tools for using this copier template and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access. If not please read our section on `working in isolated environments` (tbw).
 
   * **git / GitHub account**
 
@@ -35,17 +35,20 @@ The following are required and recommended tools for using this cookiecutter and
   * **Poetry Dynamic Versioning Plugin**: 
 
     This plugin automatically updates certain version strings in your generated project when you publish it. Your generated project will automatically be set up to use it. Install it by running:
+
     ```shell
-    poetry self add "poetry-dynamic-versioning[plugin]"
+    pipx inject poetry "poetry-dynamic-versioning[plugin]"
     ```
 
   * **copier**
 
-    Copier is a tool for generating projects based on a template 
-    (like this one!). It also allows re-configuring the projects
-    and to keep them update if the original template changes. Install it with pipx by running:
+    Copier is a tool for generating projects based on a template (like this one!). 
+    It also allows re-configuring the projects and to keep them update if the original template changes.
+    To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
+    Install both with pipx by running:
     ```shell
     pipx install copier
+    pipx inject copier jinja2_time
     ```
 
   * **just**
@@ -111,7 +114,7 @@ just testdoc
 
 ### Step 6: Create a GitHub project
 
-1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this cookiecutter template will take care of those files for you)
+1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this copier template will take care of those files for you)
 
 2. Add the remote to your local git repository
 

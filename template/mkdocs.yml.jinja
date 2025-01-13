@@ -1,0 +1,29 @@
+---
+site_name: "{{project_name}}"
+theme:
+  name: material
+  # palette:
+  #  scheme: slate
+  #  primary: cyan
+  features:
+    - content.tabs.link
+plugins:
+  - search
+  - mermaid2
+  - mknotebooks:
+      execute: false
+  - mermaid2:
+      version: 10.9.0
+nav:
+  # - Home: home.md
+  - Index: index.md
+  - About: about.md
+site_url: https://{{github_org}}.github.io/{{project_name}}
+repo_url: https://github.com/{{github_org}}/{{project_name}}
+
+# Uncomment this block to enable use of Google Analytics.
+# Replace the property value with your own ID.
+# extra:
+#   analytics:
+#     provider: google
+#     property: G-XXXXXXXXXX

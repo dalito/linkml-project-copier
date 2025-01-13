@@ -1,0 +1,36 @@
+<a href="https://github.com/copier-org/copier"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-teal.json" alt="Copier Badge" style="max-width:100%;"/></a>
+
+# {{project_name}}
+
+{{project_description}}
+
+## Website
+
+[https://{{github_org}}.github.io/{{project_name}}](https://{{github_org}}.github.io/{{project_name}})
+
+## Repository Structure
+
+* [examples/](examples/) - example data
+* [project/](project/) - project files (do not edit these)
+* [src/](src/) - source files (edit these)
+  * [{{project_slug}}](src/{{project_slug}})
+    * [schema](src/{{project_slug}}/schema) -- LinkML schema
+      (edit this)
+{%- if create_python_classes == "Yes" %}
+    * [datamodel](src/{{project_slug}}/datamodel) -- generated
+      Python datamodel
+* [tests/](tests/) - Python tests
+{%- endif %}
+
+## Developer Documentation
+
+To run commands you may use good old make or the command runner [just](https://github.com/casey/just/) which is a better choice on Windows.
+Use the `make` command or `duty` commands to generate project artefacts:
+* `make help` or `just --list`: list all pre-defined tasks
+* `make all` or `just all`: make everything
+* `make deploy` or `just deploy`: deploys site
+
+## Credits
+
+This project was made with
+[linkml-project-copier](https://github.com/dalito/linkml-project-copier).
