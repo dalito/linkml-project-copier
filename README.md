@@ -1,49 +1,36 @@
 # LinkML Project Copier Template
 
-> This is a new LinkML project template that will use copier instead of cruft/cookiecutter and
-> will replace make by [just](https://github.com/casey/just) as command runner.
+> This is a new LinkML project template that uses copier instead of cruft/cookiecutter and
+> replaces make by [just](https://github.com/casey/just) as command runner.
 > 
 > The starting point was https://github.com/linkml/linkml-project-cookiecutter/ (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10). 
 > The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was included (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
->
-> *Below is an unedited copy of the linkml-project-cookiecutter README.md*
 
-
-# LinkML Project Cookiecutter
-
-A [Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/) template for projects using [LinkML](https://github.com/linkml/linkml).
+A [copier](https://copier.readthedocs.io/) template for projects using [LinkML](https://github.com/linkml/linkml).
 
 ## Prerequisites
 
-The following are required and recommended tools for using this cookiecutter and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)!
+The following are required and recommended tools for using this cookiecutter and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access. If not please read our section on `working in isolated environments` (tbw).
+
+  * **git / GitHub account**
+
+    Git is the version management system with which this template and your repository are managed. The template also assumes that you
+    use GitHub for hosting your project which implies that you have a GitHub account.
 
   * **Python >= 3.9**
   
     LinkML tools are mainly written in Python, so you will need a recent Python interpreter to run this generator and to use the generated project.
 
-
   * **pipx**
   
-    pipx is a tool for managing isolated Python-based applications. It is the recommended way to install Poetry and cruft. To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
-
+    pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools. To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
 
   * **Poetry**
   
-    Poetry is a Python project management tool. You will use it in your generated project to manage dependencies and build distribution files. If you have pipx installed ([alternative installation methods](https://python-poetry.org/docs/#installation) are available) you can install Poetry by running:
+    Poetry is a Python project management tool. You will use it in your generated project to manage dependencies and build distribution files. Install Poetry by running:
      ```shell
      pipx install poetry
      ```
-  
-    This project manages project-level configuration. User-level [configuration](https://python-poetry.org/docs/configuration/), if needed, is your responsibility.
-
-  * **Poetry private repository**
-
-    Sandboxed environments have private pypi repositories. Poetry supports project-level [repository](https://python-poetry.org/docs/repositories/), but it is recommended to configure [this plugin](https://pypi.org/project/poetry-plugin-pypi-mirror) to persist repository across all poetry projects (and avoid cookiecutter failure):
-    ```shell
-    pip3 install poetry-plugin-pypi-mirror --user
-    # example, add line to `~/.profile` for persistence
-    export POETRY_PYPI_MIRROR_URL = "https://pypi-proxy.myorg.com/repository/pypi-all/simple"
-    ```
 
   * **Poetry Dynamic Versioning Plugin**: 
 
@@ -52,19 +39,19 @@ The following are required and recommended tools for using this cookiecutter and
     poetry self add "poetry-dynamic-versioning[plugin]"
     ```
 
+  * **copier**
 
-  * **cruft**
-
-    cruft is a tool for generating projects based on a cookiecutter (like this one!) as well as keeping those projects updated if the original cookiecutter changes. Install it with pipx by running:
+    Copier is a tool for generating projects based on a template 
+    (like this one!). It also allows re-configuring the projects
+    and to keep them update if the original template changes. Install it with pipx by running:
     ```shell
-    pipx install cruft
+    pipx install copier
     ```
-    You may also choose to not have a persistent installation of cruft, in which case you would replace any calls to the `cruft` command below with `pipx run cruft`. 
 
+  * **just**
 
-  * **make or just as command runner**
-
-    The project contains a makefile but also a `justfile` with pre-defined complex commands. To execute these commands you either need `make` or [just](https://github.com/casey/just) as an alternative command runner. Especially for Windows users we suggest `just`. Install it by running:
+    The project contains a `justfile` with pre-defined complex commands. 
+    To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
     ```shell
     pipx install just
     ```
@@ -73,56 +60,13 @@ The following are required and recommended tools for using this cookiecutter and
 
 ### Step 1: Generate the project files
 
-To generate a new LinkML project run the following:
+To generate a new LinkML project in a new subdirectory run the following:
 ```bash
-cruft create https://github.com/linkml/linkml-project-cookiecutter
-```
-Alternatively, to add linkml project files to pre-existing directory,
-(perhaps an existing non-linkml project), pass `-f` option:
-```bash
-cruft create -f https://github.com/linkml/linkml-project-cookiecutter
+copier create https://github.com/dalito/linkml-project-copier
 ```
 
-You will be prompted for a few values.  The defaults are fine for most
-projects, but do name your project something that makes sense to you!
-The interactive session will guide you through the process:
-
-1. `project_name`: Name of the project, use kebab-case with no spaces.
-Suggestions:
-    - `patient-observation-schema`
-    - `sample-collection-metadata`
-    - `resume-standard`
-2. `github_org`: Your github username or organization name. This is used to construct links to documentation pages.
-3. `project_description`: Description of the project.
-    - A single brief sentence is recommended
-    - Can easily be modified later
-4. `full_name`: Your name
-5. `email`: Your email
-6. `license`: Choose a license for the project. If your desired license is not listed you can update or remove the `LICNSE` file in the generated project.
-7. `main_schema_class`:
-    - This is used to generate an example schema which you can edit
-    - The value of this field is ignored if this is a schemasheets project
-    - You can always change this later
-    - Examples: `Person`, `Observation`, `Sample`, `Entry`, `Gene`, `Event`
-8. `create_python_project`
-    - If "Yes", set this up as a python project
-    - Select Yes if you want to make data classes that can be used by developers
-9. `use_schemasheets`
-    - If "Yes", set this to obtain your schema from
-    [schemasheets](https://linkml.io/schemasheets)
-10. `google_sheet_id`
-     - Ignore/use default value if answer to previous question was "No"
-     - If you are using schemasheets then enter your google doc ID here
-     - If you like you can leave the default value, and this will use the demo schema
-11. `google_sheet_tabs`
-    - Ignore/use default value if not using schemasheets
-    - If you are using schemasheets, enter a space-separated list of tabs
-    - your tabs in your sheet MUST NOT have spaces in them
-12. `github_token_for_pypi_deployment`:
-    - The github token name which aligns with your autogenerated PyPI token for making releases.
-    - This helps automated releases to PyPI
-    - This should be ignored if this is not a python project
-    - Even if this is a python project, you can leave blank and fill in later
+You will be prompted a few questions.
+The defaults are fine for most projects, but pick the name for your project carefully as it will also be used as project name on GitHub.
 
 ### Step 2: Set up the LinkML project
 
@@ -151,7 +95,7 @@ nano src/my_awesome_schema/schema/my_awesome_schema.yaml
 ### Step 4: Validate the schema
 
 ```bash
-make test
+just test
 ```
 
 ### Step 5: Generate documentation locally
@@ -162,7 +106,7 @@ LinkML generates schema documentation automatically. The template comes with Git
 You can also preview the documentation locally before pushing to GitHub by running:
 
 ```bash
-make serve
+just testdoc
 ```
 
 ### Step 6: Create a GitHub project
