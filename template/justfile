@@ -73,7 +73,7 @@ update: _update-template _update-linkml
 
 # Update project template
 _update-template:
-    cruft update
+    copier update --trust --skip-answered --skip-tasks
 
 # Update LinkML to latest version
 _update-linkml:
@@ -165,7 +165,6 @@ _git-init:
 
 # Add files to git
 _git-add:
-    touch .cruft.json
     git add .
 
 # Commit files to git

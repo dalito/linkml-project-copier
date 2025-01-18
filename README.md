@@ -12,64 +12,76 @@ A [copier](https://copier.readthedocs.io/) template for projects using [LinkML](
 
 The following are required and recommended tools for using this copier template and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access. If not please read our section on `working in isolated environments` (tbw).
 
-  * **git / GitHub account**
+* **git / GitHub account**
 
-    Git is the version management system with which this template and your repository are managed. The template also assumes that you
-    use GitHub for hosting your project which implies that you have a GitHub account.
+  Git is the version management system with which this template and your repository are managed. The template also assumes that you
+  use GitHub for hosting your project which implies that you have a GitHub account.
 
-  * **Python >= 3.9**
-  
-    LinkML tools are mainly written in Python, so you will need a recent Python interpreter to run this generator and to use the generated project.
+* **Python >= 3.9**
 
-  * **pipx**
-  
-    pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools. To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
+  LinkML tools are mainly written in Python, so you will need a recent Python interpreter to run this generator and to use the generated project.
 
-  * **Poetry**
-  
-    Poetry is a Python project management tool. You will use it in your generated project to manage dependencies and build distribution files. Install Poetry by running:
-     ```shell
-     pipx install poetry
-     ```
+* **pipx**
 
-  * **Poetry Dynamic Versioning Plugin**: 
+  pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools. To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
 
-    This plugin automatically updates certain version strings in your generated project when you publish it. Your generated project will automatically be set up to use it. Install it by running:
+* **Poetry**
 
-    ```shell
-    pipx inject poetry "poetry-dynamic-versioning[plugin]"
-    ```
+  Poetry is a Python project management tool. You will use it in your generated project to manage dependencies and build distribution files. Install Poetry by running:
 
-  * **copier**
+  ```shell
+  pipx install poetry
+  ```
 
-    Copier is a tool for generating projects based on a template (like this one!). 
-    It also allows re-configuring the projects and to keep them update if the original template changes.
-    To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
-    Install both with pipx by running:
-    ```shell
-    pipx install copier
-    pipx inject copier jinja2_time
-    ```
+* **Poetry Dynamic Versioning Plugin**: 
 
-  * **just**
+  This plugin automatically updates certain version strings in your generated project when you publish it. Your generated project will automatically be set up to use it. Install it by running:
 
-    The project contains a `justfile` with pre-defined complex commands. 
-    To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
-    ```shell
-    pipx install just
-    ```
+  ```shell
+  pipx inject poetry "poetry-dynamic-versioning[plugin]"
+  ```
+
+* **copier**
+
+  Copier is a tool for generating projects based on a template (like this one!). 
+  It also allows re-configuring the projects and to keep them update if the original template changes.
+  To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
+  Install both with pipx by running:
+
+  ```shell
+  pipx install copier
+  pipx inject copier jinja2_time
+  ```
+
+* **just**
+
+  The project contains a `justfile` with pre-defined complex commands. 
+  To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
+
+  ```shell
+  pipx install just
+  ```
 
 ## Creating a new project
 
 ### Step 1: Generate the project files
 
-To generate a new LinkML project in a new subdirectory run the following:
+To generate a new LinkML project first create a new empty subdirectory and then run the following:
+
 ```bash
-copier create https://github.com/dalito/linkml-project-copier
+copier copy --trust https://github.com/dalito/linkml-project-copier ./path/to/destination
 ```
+
+The `--trust` option is needed because the template uses the jinja_extension `jinja2_time`.
 
 You will be prompted a few questions.
 The defaults are fine for most projects, but pick the name for your project carefully as it will also be used as project name on GitHub.
+
+It is also possible to use non-default branches via `--vcs-ref` which is useful when developing the template:
+
+```bash
+copier copy --trust --vcs-ref branch-name gh:dalito/linkml-project-copier ./path/to/destination
+```
 
 ### Step 2: Set up the LinkML project
 
@@ -81,19 +93,15 @@ Optionally customize your project if needed:
 * pass supported environment variables via '.env.public' configuration file;
 
 Setup your project
+
 ```bash
 cd my-awesome-schema  # using the folder example above
-make setup
+just setup
 ```
 
 ### Step 3: Edit the schema
 
-Edit the schema (the .yaml file) in the
-`src/my_awesome_schema/schema` folder
-
-```bash
-nano src/my_awesome_schema/schema/my_awesome_schema.yaml
-```
+Edit the schema (the .yaml file) in the `src/my_awesome_schema/schema` folder with an editor of your choice.
 
 ### Step 4: Validate the schema
 
@@ -103,7 +111,7 @@ just test
 
 ### Step 5: Generate documentation locally
 
-LinkML generates schema documentation automatically. The template comes with GitHub Actions that generate and publish the documentation when you push schema changes to GitHub. The published documentation can be found at a URL like this one:
+LinkML generates schema documentation automatically. The template includes the configuration for generating and publishing the documentation with GitHub whenever you push schema changes to GitHub. The published documentation can be found at a URL like this one:
 `https://{github-user-or-organization}.github.io/{project-name}/`
 
 You can also preview the documentation locally before pushing to GitHub by running:
@@ -114,7 +122,7 @@ just testdoc
 
 ### Step 6: Create a GitHub project
 
-1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this copier template will take care of those files for you)
+1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this copier template will add those files for you)
 
 2. Add the remote to your local git repository
 
@@ -139,30 +147,26 @@ See [How to register a schema](https://linkml.io/linkml/faq/contributing.html#ho
 
 See [How to Manage Releases of your LinkML Schema](https://linkml.io/linkml/howtos/manage-releases.html)
 
-## Keeping your project up to date
+## Keeping your project up to date or changing its configuration
 
-In order to be up-to-date with the template, first check if there is a mismatch
-between the project's boilerplate code and the template by running:
+Copier allows you to update your project with changes from the template. 
+You can also change the project by providing different answers to the questions than the last time.
+
+To update your project with changes from the template and to reconfigure your project options, run:
 
 ```bash
-cruft check
+copier update --trust
 ```
 
-This indicates if there is a difference between the current project's
-boilerplate code and the latest version of the project template. If the project
-is up-to-date with the template:
+To do a pure update without re-configuration run:
 
-```output
-SUCCESS: Good work! Project's cruft is up to date and as clean as possible :).
+```bash
+copier update --trust --skip-answered
 ```
 
-Otherwise, it will indicate that the project's boilerplate code is not
-up-to-date by the following:
+If you use initialised the project from a non-default branch, you must add `--vcs-ref branch-name` to the update command.
 
-```output
-FAILURE: Project's cruft is out of date! Run `cruft update` to clean this mess up.
-```
+Copier will try to merge the changes.
+Conflicts will be inlined and may be resolved with git in the standard way.
 
-For viewing the difference, run `cruft diff`. This shows the difference between the project's boilerplate code and the template's latest version.
-
-After running `cruft update`, the project's boilerplate code will be updated to the latest version of the template.
+For more updating, see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
