@@ -12,11 +12,13 @@ project_name:
 
 project_slug:
     type: str
-    help: A slug of the name
+    help: A slug of the name. Must be a valid Python package name.
     default: "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}"
+    # regex_search is part of a jinja extension loaded by default.
+    # It is case insensitive by default. We need to set ignorecase=False to make it case sensitive.
     validator: >-
-        {% if not (project_slug | regex_search('^[a-z][a-z0-9\-]+$')) %}
-        project_slug must start with a letter, followed by one or more letters, digits or dashes all lowercase.
+        {% if not (project_slug | regex_search('^[a-z][_a-z0-9\-]+$', ignorecase=False)) %}
+        project_slug must start with a lowercase letter, followed by lowercase letters, digits, dashes or underscores.
         {% endif %}
 
 email:
@@ -25,7 +27,7 @@ email:
     default: my-name@my-org.org
 
 full_name:
-    help: Developer name
+    help: Developer full name
     type: str
     default: My Name
 
@@ -89,9 +91,9 @@ use_schemasheets:
     default: "No"
 
 google_sheet_id:
+    placeholder: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
     help: Google Sheet ID
     type: str
-    default: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
     when: "{{ use_schemasheets == 'Yes' }}"
 
 google_sheet_tabs:
@@ -130,20 +132,21 @@ _exclude:
 
 _skip_if_exists:
     # files or dirs that should not be overwritten if they already exist in the project
-    - {{ source_path}}
+    - "{{ source_path }}"
     - LICENSE
     - README.md
+    - src/docs/files/about.md
 
 _message_after_copy: |
+
     ** PROJECT CREATION COMPLETE **
 
-    Next steps (if you have not previously initialized your project):
-    cd {{project_name}}
-    just setup
+    Next step (if you have not previously initialized your project)
+    run "just setup" in the root of your project directory.
 
 _tasks:
     # Commands to execute after generating or updating a project from the template.
-    - "git init"
+    # - "git init"
     # - "rm {{ name_of_the_project }}/README.md"
 
     # Arrays are executed without shell, saving you the work of escaping arguments
