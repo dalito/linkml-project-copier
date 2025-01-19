@@ -51,6 +51,11 @@ license:
         - GNU GPL v3.0
     default: MIT
 
+copyright_year:
+    help: The year of the first release
+    type: str
+    default: "{% now 'utc', '%Y' %}"
+
 author:
     help: The author of the schema
     type: str
@@ -127,6 +132,7 @@ _skip_if_exists:
     # files or dirs that should not be overwritten if they already exist in the project
     - {{ source_path}}
     - LICENSE
+    - README.md
 
 _message_after_copy: |
     ** PROJECT CREATION COMPLETE **
