@@ -1,16 +1,19 @@
-# LinkML Project Copier Template
+# A Copier Template for LinkML Projects
 
-> This is a new LinkML project template that uses copier instead of cruft/cookiecutter and
-> replaces make by [just](https://github.com/casey/just) as command runner.
->
-> The starting point was https://github.com/linkml/linkml-project-cookiecutter/ (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10).
-> The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was included (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
+This template uses the code-scaffolding tool [copier](https://copier.readthedocs.io/) to create a [LinkML](https://github.com/linkml/linkml) project.
+Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
-A [copier](https://copier.readthedocs.io/) template for projects using [LinkML](https://github.com/linkml/linkml).
+* Early releases (0.1.x) maintain backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/). This facilitates to experiment with the migration of existing cruft/cookiecutter-based projects.
+* Later releases starting with 0.2.0 will gradually give up compatibility.
+
+The generated project uses [just](https://github.com/casey/just) as preferred command runner, even in the 0.1.x releases.
+
+> The starting point of this template was [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10).
+> The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was also included (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
 
 ## Prerequisites
 
-The following are required and recommended tools for using this copier template and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access. If not please read our section on `working in isolated environments` (tbw).
+The following are required and recommended tools for using this copier template and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access.
 
 * **git / GitHub account**
 
@@ -125,7 +128,7 @@ just testdoc
 
 1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this copier template will add those files for you)
 
-2. Add the remote to your local git repository
+2. Add the remote to your local git repository:
 
    ```bash
    git remote add origin https://github.com/{github-user-or-organization}/{project-name}.git
@@ -154,12 +157,12 @@ This is a rough guide on the required steps.
 Feedback and suggestions for improvement based on your experiences are very welcome.
 The commands are written to be run at the root of your project.
 
-- Start with a clean state of the existing project (check with `git status`)
-- Create a new branch and activate it 
+* Start with a clean state of the existing project (check with `git status`).
+* Create a new branch and activate it:
 
   `git switch -c migrate-to-copier`
 
-- Adapt your project and create a copier answers file (`.copier-answers`) by running
+* Adapt your project and create a copier answers file (`.copier-answers`) by running:
 
   `copier copy --trust --skip-tasks --vcs-ref=HEAD gh:dalito/linkml-project-copier .`
 
@@ -167,10 +170,10 @@ The commands are written to be run at the root of your project.
   look into the `.cruft.json` file to find out which values you chose when you configured  your project.
   Be sure to enter the same values when answering the copier questions.
 
-- Carefully review the changes that copier made to your project.
-- If you used a cruft/cookiecutter template before, you may delete the cruft file `.cruft.json`.
-- If you are happy, commit all changes to the `migrate-to-copier` branch.
-- To finalise the migration, merge the `migrate-to-copier` branch to your main branch.
+* Carefully review the changes that copier made to your project.
+* If you used a cruft/cookiecutter template before, you may delete the cruft file `.cruft.json`.
+* If you are happy, commit all changes to the `migrate-to-copier` branch.
+* To finalise the migration, merge the `migrate-to-copier` branch to your main branch.
 
 ## Keeping your project up to date or changing its configuration
 
