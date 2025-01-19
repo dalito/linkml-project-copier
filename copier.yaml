@@ -108,12 +108,6 @@ google_sheet_module:
     default: "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(google_sheet_tabs) }}"
     when: false
 
-source_path:
-    help: Path to the source code
-    type: str
-    default: src/{{project_slug}}/schema/{{project_slug}}.yaml
-    when: false
-
 # === copier configuration options ===
 # see https://copier.readthedocs.io/en/stable/configuring/#available-settings
 
@@ -132,10 +126,14 @@ _exclude:
 
 _skip_if_exists:
     # files or dirs that should not be overwritten if they already exist in the project
-    - "{{ source_path }}"
     - LICENSE
     - README.md
+    - project/*
     - src/docs/files/about.md
+    - src/{{project_slug}}/data/*
+    - src/{{project_slug}}/datamodel/*
+    - src/{{project_slug}}/schema/*
+    - tests/test_data.py
 
 _message_after_copy: |
 
