@@ -2,8 +2,8 @@
 
 > This is a new LinkML project template that uses copier instead of cruft/cookiecutter and
 > replaces make by [just](https://github.com/casey/just) as command runner.
-> 
-> The starting point was https://github.com/linkml/linkml-project-cookiecutter/ (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10). 
+>
+> The starting point was https://github.com/linkml/linkml-project-cookiecutter/ (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10).
 > The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was included (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
 
 A [copier](https://copier.readthedocs.io/) template for projects using [LinkML](https://github.com/linkml/linkml).
@@ -33,7 +33,7 @@ The following are required and recommended tools for using this copier template 
   pipx install poetry
   ```
 
-* **Poetry Dynamic Versioning Plugin**: 
+* **Poetry Dynamic Versioning Plugin**:
 
   This plugin automatically updates certain version strings in your generated project when you publish it. Your generated project will automatically be set up to use it. Install it by running:
 
@@ -43,7 +43,7 @@ The following are required and recommended tools for using this copier template 
 
 * **copier**
 
-  Copier is a tool for generating projects based on a template (like this one!). 
+  Copier is a tool for generating projects based on a template (like this one!).
   It also allows re-configuring the projects and to keep them update if the original template changes.
   To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
   Install both with pipx by running:
@@ -55,7 +55,7 @@ The following are required and recommended tools for using this copier template 
 
 * **just**
 
-  The project contains a `justfile` with pre-defined complex commands. 
+  The project contains a `justfile` with pre-defined complex commands.
   To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
 
   ```shell
@@ -66,10 +66,11 @@ The following are required and recommended tools for using this copier template 
 
 ### Step 1: Generate the project files
 
-To generate a new LinkML project first create a new empty subdirectory and then run the following:
+To generate a new LinkML project first create a new empty directory for the project and then run the following:
 
 ```bash
-copier copy --trust https://github.com/dalito/linkml-project-copier ./path/to/destination
+cd path/to/new/directory
+copier copy --trust https://github.com/dalito/linkml-project-copier .
 ```
 
 The `--trust` option is needed because the template uses the jinja_extension `jinja2_time`.
@@ -77,7 +78,7 @@ The `--trust` option is needed because the template uses the jinja_extension `ji
 You will be prompted a few questions.
 The defaults are fine for most projects, but pick the name for your project carefully as it will also be used as project name on GitHub.
 
-It is also possible to use non-default branches via `--vcs-ref` which is useful when developing the template:
+It is also possible to use non-default branches or specific tags via `--vcs-ref` which is useful when developing the template:
 
 ```bash
 copier copy --trust --vcs-ref branch-name gh:dalito/linkml-project-copier ./path/to/destination
@@ -147,6 +148,30 @@ See [How to register a schema](https://linkml.io/linkml/faq/contributing.html#ho
 
 See [How to Manage Releases of your LinkML Schema](https://linkml.io/linkml/howtos/manage-releases.html)
 
+## Migrating an existing project to use this template
+
+This is a rough guide on the required steps.
+Feedback and suggestions for improvement based on your experiences are very welcome.
+The commands are written to be run at the root of your project.
+
+- Start with a clean state of the existing project (check with `git status`)
+- Create a new branch and activate it 
+
+  `git switch -c migrate-to-copier`
+
+- Adapt your project and create a copier answers file (`.copier-answers`) by running
+
+  `copier copy --trust --skip-tasks --vcs-ref=HEAD gh:dalito/linkml-project-copier .`
+
+  If you start from a linkml-project-cookiecutter based project,
+  look into the `.cruft.json` file to find out which values you chose when you configured  your project.
+  Be sure to enter the same values when answering the copier questions.
+
+- Carefully review the changes that copier made to your project.
+- If you used a cruft/cookiecutter template before, you may delete the cruft file `.cruft.json`.
+- If you are happy, commit all changes to the `migrate-to-copier` branch.
+- To finalise the migration, merge the `migrate-to-copier` branch to your main branch.
+
 ## Keeping your project up to date or changing its configuration
 
 Copier allows you to update your project with changes from the template.
@@ -164,9 +189,10 @@ To do a pure update without re-configuration run:
 copier update --trust --skip-tasks --skip-answered
 ```
 
-If you initialised the project from a non-default branch, you must add `--vcs-ref branch-name` to the update command.
+If you initialized the project from a non-default branch, you must add `--vcs-ref branch-name` also to the update commands.
 
-Copier will try to merge the changes.
-Conflicts will be inlined and may be resolved with git in the standard way.
+When updating, Copier will do its best to respect the project evolution by using the answers provided last time.
+However, sometimes this is impossible and conflicts occur.
+They will be inlined into the conflicting files and can be resolved just like any other git conflict.
 
 For more on updating see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
