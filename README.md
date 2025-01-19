@@ -149,24 +149,24 @@ See [How to Manage Releases of your LinkML Schema](https://linkml.io/linkml/howt
 
 ## Keeping your project up to date or changing its configuration
 
-Copier allows you to update your project with changes from the template. 
+Copier allows you to update your project with changes from the template.
 You can also change the project by providing different answers to the questions than the last time.
 
 To update your project with changes from the template and to reconfigure your project options, run:
 
 ```bash
-copier update --trust
+copier update --trust --skip-tasks
 ```
 
 To do a pure update without re-configuration run:
 
 ```bash
-copier update --trust --skip-answered
+copier update --trust --skip-tasks --skip-answered
 ```
 
-If you use initialised the project from a non-default branch, you must add `--vcs-ref branch-name` to the update command.
+If you initialised the project from a non-default branch, you must add `--vcs-ref branch-name` to the update command.
 
 Copier will try to merge the changes.
 Conflicts will be inlined and may be resolved with git in the standard way.
 
-For more updating, see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
+For more on updating see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
