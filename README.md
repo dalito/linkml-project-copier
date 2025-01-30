@@ -62,7 +62,7 @@ The following are required and recommended tools for using this copier template 
   To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
 
   ```shell
-  pipx install just
+  pipx install rust-just
   ```
 
 ## Creating a new project
