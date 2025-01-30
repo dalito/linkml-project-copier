@@ -9,22 +9,27 @@ on:
 
 concurrency: {% raw %}preview-${{ github.ref }}{% endraw %}
 
+permissions: {}
+
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Python 3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
         with:
           python-version: 3.9
 
       - name: Install Poetry
-        run: pipx install poetry
+        run: |
+          pipx install poetry
+          pipx install just
 
       - name: Install dependencies
         run: poetry install -E docs
@@ -33,12 +38,12 @@ jobs:
         run: |
           mkdir -p site
           touch site/.nojekyll
-          make gendoc
+          just gendoc
           ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
           poetry run mkdocs build -d site
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+        uses: rossjrw/pr-preview-action@df22037db54ab6ee34d3c1e2b8810ac040a530c6
         with:
           source-dir: site/
           preview-branch: gh-pages

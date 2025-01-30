@@ -5,26 +5,39 @@ name: Build and test {{project_slug}}
 
 on: [pull_request]
 
+permissions: {}
+
 jobs:
   test:
 
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
 
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
         with:
           python-version: ${{ "{{" }} matrix.python-version {{ "}}" }}
 
       - name: Install Poetry
-        run: pipx install poetry
+        run: |
+          pipx install poetry
+          pipx install just
+
+      # We install poetry-dynamic-versioning into pipx because the automatic installallation
+      # by poetry 2.x triggers a Windows issue https://github.com/pypa/installer/issues/260
+      - name: Install poetry-dynamic-versioning
+        if: runner.os == 'Windows'
+        run:
+          pipx inject poetry poetry-dynamic-versioning
 
       - name: Install dependencies
         run: poetry install --no-interaction --no-root
@@ -33,4 +46,4 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Run test suite
-        run: make test
+        run: just test
