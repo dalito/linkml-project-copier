@@ -52,9 +52,11 @@ _status: _check-config
     @echo "Source: {{source_schema_path}}"
 
 # Run initial setup (run this first)
+[group('project management')]
 setup: _check-config _git-init install _gen-project _gen-examples _gendoc _git-add _git-commit
 
 # Install project dependencies
+[group('project management')]
 install:
     poetry install
 
@@ -69,6 +71,7 @@ _check-config:
     print('Project-status: Ok')
 
 # Updates project template and LinkML package
+[group('project management')]
 update: _update-template _update-linkml
 
 # Update project template
@@ -79,13 +82,12 @@ _update-template:
 _update-linkml:
     poetry add -D linkml@latest
 
-# Generate all project files
-alias all := site
-
 # Generate site locally
+[group('model development')]
 site: _gen-project _gendoc
 
-# Deploy site
+# Deploy documentation site
+[group('deployment')]
 deploy: site
   mkd-gh-deploy
 
@@ -116,6 +118,7 @@ _gen-project: _ensure_pymodel_dir _compile_sheets
     fi
 
 # Run all tests
+[group('model development')]
 test: _test-schema _test-python _test-examples
 
 # Test schema generation
@@ -137,6 +140,7 @@ _test-examples: _ensure_examples_output
         --schema {{source_schema_path}} > examples/output/README.md
 
 # Run linting
+[group('model development')]
 lint:
     poetry run linkml-lint {{source_schema_path}}
 
@@ -146,6 +150,7 @@ _gendoc: _ensure_docdir
     poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
+[group('model development')]
 testdoc: _gendoc _serve
 
 # Run documentation server
@@ -172,6 +177,7 @@ _git-status:
     git status
 
 # Clean all generated files
+[group('project management')]
 clean:
     rm -rf {{dest}}
     rm -rf tmp
