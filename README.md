@@ -26,27 +26,31 @@ The following are required and recommended tools for using this copier template 
 
 * **pipx**
 
-  pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools. To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
+  pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools.
+  To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
 
 * **Poetry**
 
-  Poetry is a Python project management tool. You will use it in your generated project to manage dependencies and build distribution files. Install Poetry by running:
+  Poetry is a Python project management tool. 
+  You will use it in your generated project to manage dependencies and build distribution files.
+  Install Poetry by running:
 
   ```shell
   pipx install poetry
   ```
 
-  This will install Poetry 2.0 as required by this project.
+  This will install Poetry 2.x as required by this project.
   If you also need Poetry 1.x for other projects, you can have both Poetry 2.x and Poetry 1.x installed at the same time.
   pipx has the option to install another version with a suffix-modified name, here "poetry1",
 
-    ```bash
-      `pipx install --suffix=1 "poetry<2.0"`.
-    ```
+  ```shell
+  pipx install --suffix=1 "poetry<2.0"
+  ```
 
 * **Poetry Dynamic Versioning Plugin**:
 
-  This plugin automatically updates certain version strings in your generated project when you publish it. Your generated project will automatically be set up to use it. Install it by running:
+  This plugin automatically updates certain version strings in your generated project when you publish it.
+  Install it by running:
 
   ```shell
   pipx inject poetry "poetry-dynamic-versioning[plugin]"
