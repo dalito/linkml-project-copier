@@ -65,8 +65,13 @@ author:
     when: false  # Make it a computed value. Neither ask for it nor store it.
 
 main_schema_class:
+    help: Name of the main class in the schema
     type: str
     default: "Person"
+    validator: >-
+        {% if not (main_schema_class | regex_search('^[A-Z][_a-zA-Z0-9]*$', ignorecase=False)) %}
+        main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
+        {% endif %}
 
 create_python_classes:
     help: Create Python classes for the schema?
