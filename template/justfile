@@ -104,8 +104,7 @@ _gen-examples:
 
 # Generate project files
 _gen-project: _ensure_pymodel_dir _compile_sheets
-    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}} && \
-    mv {{dest}}/*.py {{pymodel}}
+    poetry run gen-project {{config_yaml}} -d {{pymodel}} {{source_schema_path}} && \
     @if [ ! -z "${{gen_owl_args}}" ]; then \
       mkdir -p {{dest}}/owl || true && \
       poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
