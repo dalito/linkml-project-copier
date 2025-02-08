@@ -1,14 +1,11 @@
 # config.public.mk
 
 # This file is public in git. No sensitive info allowed.
-# These variables are sourced in justfile and/or Makefile..
 
-###### schema definition variables, used by justfile/Makefile
+###### schema definition variables, used by justfile
 
-# Note: 
+# Note:
 # - just works fine with quoted variables of dot-env files like this one
-# - make does not support standard dot-env files. If you use make remove the quotes.
-#   see also https://github.com/linkml/linkml-project-cookiecutter/issues/106
 LINKML_SCHEMA_NAME="{{project_slug}}"
 LINKML_SCHEMA_AUTHOR="{{author}}"
 LINKML_SCHEMA_DESCRIPTION="{{project_description}}"
@@ -18,7 +15,7 @@ LINKML_SCHEMA_GOOGLE_SHEET_ID="{{google_sheet_id}}"
 LINKML_SCHEMA_GOOGLE_SHEET_TABS="{{google_sheet_tabs}}"
 LINKML_USE_SCHEMASHEETS={{use_schemasheets}}
 
-###### linkml generator variables, used by justfile/Makefile
+###### linkml generator variables, used by justfile
 
 ## gen-project configuration file
 LINKML_GENERATORS_CONFIG_YAML=config.yaml

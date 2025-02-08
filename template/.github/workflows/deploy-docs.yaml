@@ -11,7 +11,7 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    # Grant GITHUB_TOKEN the permissions required to make a gh-pages deployment
     permissions:
       contents: write  # to let mkdocs write the new docs
       pages: write     # to deploy to Pages
@@ -38,7 +38,7 @@ jobs:
       - name: Install Poetry incl. plugins
         # We install poetry-dynamic-versioning into pipx because the automatic installallation
         # by poetry 2.x triggers a Windows issue https://github.com/pypa/installer/issues/260
-        # and also does not work on Ubuntu in gh-actions.        
+        # and also does not work on Ubuntu in gh-actions.
         run: |
           pipx install poetry
           pipx inject poetry poetry-dynamic-versioning
@@ -47,9 +47,10 @@ jobs:
         run: poetry install
 
       - name: Build documentation
+        # TODO: Check if this way of combining doc sources is the best way to do it.
         run: |
           mkdir -p docs
           touch docs/.nojekyll
-          make gendoc
+          just gendoc
           ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
-          make mkd-gh-deploy
+          mkd-gh-deploy
