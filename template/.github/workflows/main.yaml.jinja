@@ -1,7 +1,7 @@
 # Built from:
 # https://docs.github.com/en/actions/guides/building-and-testing-python
 ---
-name: Build and test {{project_slug}}
+name: Build and test
 
 on: [pull_request]
 
@@ -22,10 +22,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Python ${{ "{{" }} matrix.python-version {{ "}}" }}
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
         with:
-          python-version: ${{ "{{" }} matrix.python-version {{ "}}" }}
+          python-version: ${{ matrix.python-version }}
 
       - name: Install just & Poetry incl. plugins
         # We install poetry-dynamic-versioning into pipx because the automatic installallation

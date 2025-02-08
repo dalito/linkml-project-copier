@@ -1,4 +1,4 @@
-name: Preview {{project_slug}} documentation build
+name: Preview documentation build
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - reopened
       - synchronize
 
-concurrency: {% raw %}preview-${{ github.ref }}{% endraw %}
+concurrency: preview-${{ github.ref }}
 
 permissions: {}
 
