@@ -170,7 +170,7 @@ _git-add:
 
 # Commit files to git
 _git-commit:
-    git commit -m 'chore: make setup was run' -a
+    git commit -m 'chore: just setup was run' -a
 
 # Show git status
 _git-status:
