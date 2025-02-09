@@ -75,14 +75,6 @@ main_schema_class:
     main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
     {% endif %}
 
-create_python_classes:
-  help: Create Python classes for the schema?
-  type: str
-  choices:
-    - "Yes"
-    - "No"
-  default: "Yes"
-
 github_token_for_pypi_deployment:
   help: Github token for PyPI deployment
   type: str
