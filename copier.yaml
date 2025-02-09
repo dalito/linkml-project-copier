@@ -66,14 +66,15 @@ author:
   default: "{{ full_name }} <{{ email }}>"
   when: false  # Make it a computed value. Neither ask for it nor store it.
 
-main_schema_class:
-  help: Name of the main class in the schema
+add_example:
+  help: |
+    Add an example schema including python package generation & tests?
+    Choose "no" if you want to apply the template to an existing project.
   type: str
-  default: "Person"
-  validator: >-
-    {% if not (main_schema_class | regex_search('^[A-Z][_a-zA-Z0-9]*$', ignorecase=False)) %}
-    main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
-    {% endif %}
+  choices:
+    - "Yes"
+    - "No"
+  default: "Yes"
 
 gh_action_pypi:
   help: Use GitHub actions to publish to PyPI?
