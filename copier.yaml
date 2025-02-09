@@ -69,7 +69,7 @@ author:
 add_example:
   help: |
     Add an example schema including python package generation & tests?
-    Choose "no" if you want to apply the template to an existing project.
+       Choose "no" if you want to apply the template to an existing project.
   type: str
   choices:
     - "Yes"
@@ -87,7 +87,6 @@ gh_action_pypi:
 gh_action_docs_preview:
   help: |
     Use GitHub actions for a documentation preview in pull requests?
-    The default is "no" because it does not work for pull requests from forks.
   type: str
   choices:
     - "Yes"
