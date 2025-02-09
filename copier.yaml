@@ -75,12 +75,6 @@ main_schema_class:
     main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
     {% endif %}
 
-github_token_for_pypi_deployment:
-  help: Github token for PyPI deployment
-  type: str
-  default: "PYPI_PASSWORD"
-  when: false  # Don't ask, don't store.
-
 gh_action_pypi:
   help: Use GitHub actions to publish to PyPI?
   type: str
