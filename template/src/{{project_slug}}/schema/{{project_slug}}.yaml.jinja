@@ -35,10 +35,10 @@ classes:
       - description
     class_uri: schema:Thing
 
-  {{main_schema_class}}:
+  Person:
     is_a: NamedThing
     description: >-
-      Represents a {{main_schema_class}}
+      Represents a Person
     slots:
       - primary_email
       - birth_date
@@ -48,13 +48,13 @@ classes:
       primary_email:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
 
-  {{main_schema_class}}Collection:
+  PersonCollection:
     tree_root: true
     description: >-
-      A holder for {{main_schema_class}} objects
+      A holder for Person objects
     attributes:
       entries:
-        range: {{main_schema_class}}
+        range: Person
         multivalued: true
         inlined: true
 
