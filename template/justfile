@@ -104,9 +104,10 @@ _gen-examples:
 
 # Generate project files
 _gen-project: _ensure_pymodel_dir _compile_sheets
-    poetry run gen-project {{config_yaml}} -d {{pymodel}} {{source_schema_path}} && \
-    @if [ ! -z "${{gen_owl_args}}" ]; then \
-      mkdir -p {{dest}}/owl || true && \
+    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
+    mv {{dest}}/*.py {{pymodel}}
+    @if [ ! ${{gen_owl_args}} ]; then \
+      mkdir -p {{dest}}/owl && \
       poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
     fi
     @if [ ! ${{gen_java_args}} ]; then \
@@ -143,7 +144,7 @@ _test-examples: _ensure_examples_output
 lint:
     poetry run linkml-lint {{source_schema_path}}
 
-# Generate documentation
+# Generate documentation for the schema
 _gendoc: _ensure_docdir
     cp -r {{src}}/docs/files/* {{docdir}}
     poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}

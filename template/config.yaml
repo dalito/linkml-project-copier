@@ -10,7 +10,9 @@ generator_args:
     # throws 'Cannot handle metadata profile: rdfs'
     # metadata_profile: rdfs
   markdown:
+    # mergeimports is true by default. Why is it set here?
     mergeimports: true
+    # directory: docs/
   graphql:
     mergeimports: true
   java:
