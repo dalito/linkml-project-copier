@@ -6,112 +6,134 @@
 # see https://copier.readthedocs.io/en/stable/configuring/#advanced-prompt-formatting
 
 project_name:
-    type: str
-    help: What is your project name?
-    default: my-awesome-schema
+  type: str
+  help: What is your project name?
+  default: my-awesome-schema
 
 project_slug:
-    type: str
-    help: A slug of the name. Must be a valid and unused Python package name.
-    default: "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}"
-    # regex_search is part of a jinja extension loaded by default.
-    # It is case insensitive by default. We need to set ignorecase=False to make it case sensitive.
-    validator: >-
-        {% if not (project_slug | regex_search('^[a-z][_a-z0-9\-]+$', ignorecase=False)) %}
-        project_slug must start with a lowercase letter, followed by lowercase letters, digits, dashes or underscores.
-        {% endif %}
+  type: str
+  help: A slug of the name. Must be a valid and unused Python package name.
+  default: >-
+    "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}"
+  # regex_search is part of a jinja extension loaded by default.
+  # It is case insensitive by default. We need to set ignorecase=False to make it case sensitive.
+  validator: >-
+    {% if not (project_slug | regex_search('^[a-z][_a-z0-9\-]+$', ignorecase=False)) %}
+    project_slug must start with a lowercase letter, followed by lowercase letters, digits,
+    dashes or underscores.
+    {% endif %}
 
 email:
-    help: Email address
-    type: str
-    default: my-name@my-org.org
+  help: Email address
+  type: str
+  default: my-name@my-org.org
 
 full_name:
-    help: Developer full name
-    type: str
-    default: My Name
+  help: Developer full name
+  type: str
+  default: My Name
 
 github_org:
-    help: Github user or organisation name
-    type: str
-    default: my-org
+  help: Github user or organisation name
+  type: str
+  default: my-org
 
 project_description:
-    help: A short description of the project
-    type: str
-    default: This is the project description.
+  help: A short description of the project
+  type: str
+  default: This is the project description.
 
 license:
-    help: Which license do you want for your project?
-    type: str
-    choices:
-        - BSD-3
-        - MIT
-        - Mozilla Public License 2.0
-        - Apache Software License 2.0
-        - GNU LGPL v3.0
-        - GNU GPL v3.0
-    default: MIT
+  help: Which license do you want for your project?
+  type: str
+  choices:
+    - BSD-3
+    - MIT
+    - Mozilla Public License 2.0
+    - Apache Software License 2.0
+    - GNU LGPL v3.0
+    - GNU GPL v3.0
+  default: MIT
 
 copyright_year:
-    help: The year of the first release
-    type: str
-    default: "{% now 'utc', '%Y' %}"
+  help: The year of the first release
+  type: str
+  default: "{% now 'utc', '%Y' %}"
 
 author:
-    help: The author of the schema
-    type: str
-    default: "{{ full_name }} <{{ email }}>"
-    when: false  # Make it a computed value. Neither ask for it nor store it.
+  help: The author of the schema in the format "Full Name <email>"
+  type: str
+  default: "{{ full_name }} <{{ email }}>"
+  when: false  # Make it a computed value. Neither ask for it nor store it.
 
 main_schema_class:
-    help: Name of the main class in the schema
-    type: str
-    default: "Person"
-    validator: >-
-        {% if not (main_schema_class | regex_search('^[A-Z][_a-zA-Z0-9]*$', ignorecase=False)) %}
-        main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
-        {% endif %}
+  help: Name of the main class in the schema
+  type: str
+  default: "Person"
+  validator: >-
+    {% if not (main_schema_class | regex_search('^[A-Z][_a-zA-Z0-9]*$', ignorecase=False)) %}
+    main_schema_class must start with an uppercase letter, followed by more letters, digits, or underscores.
+    {% endif %}
 
 create_python_classes:
-    help: Create Python classes for the schema?
-    type: str
-    choices:
-      - "Yes"
-      - "No"
-    default: "Yes"
+  help: Create Python classes for the schema?
+  type: str
+  choices:
+    - "Yes"
+    - "No"
+  default: "Yes"
 
 github_token_for_pypi_deployment:
-    help: Github token for PyPI deployment
-    type: str
-    default: "PYPI_PASSWORD"
-    when: false  # Don't ask, don't store.
+  help: Github token for PyPI deployment
+  type: str
+  default: "PYPI_PASSWORD"
+  when: false  # Don't ask, don't store.
+
+gh_action_pypi:
+  help: Use GitHub actions to publish to PyPI?
+  type: str
+  choices:
+    - "Yes"
+    - "No"
+  default: "Yes"
+
+gh_action_docs_preview:
+  help: |
+    Use GitHub actions for a documentation preview in pull requests?
+    The default is "no" because it does not work for pull requests from forks.
+  type: str
+  choices:
+    - "Yes"
+    - "No"
+  default: "No"
 
 use_schemasheets:
-    help: Use Google Sheets for schema definitions?
-    type: str
-    choices:
-      - "Yes"
-      - "No"
-    default: "No"
+  help: Use Google Sheets for schema definitions?
+  type: str
+  choices:
+    - "Yes"
+    - "No"
+  default: "No"
 
 google_sheet_id:
-    placeholder: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
-    help: Google Sheet ID
-    type: str
-    when: "{{ use_schemasheets == 'Yes' }}"
+  placeholder: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+  help: Google Sheet ID
+  type: str
+  when: "{{ use_schemasheets == 'Yes' }}"
 
 google_sheet_tabs:
-    help: Google Sheet tabs
-    type: str
-    default: "personinfo enums"
-    when: "{{ use_schemasheets == 'Yes' }}"
+  help: Google Sheet tabs
+  type: str
+  default: "personinfo enums"
+  when: "{{ use_schemasheets == 'Yes' }}"
 
 google_sheet_module:
-    help: Google Sheet module
-    type: str
-    default: "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(google_sheet_tabs) }}"
-    when: false
+  help: Google Sheet module
+  type: str
+  default: >-
+    {% from pathjoin('includes', 'slugify.jinja') import slugify %}
+    {{ slugify(google_sheet_tabs) }}
+  when: false
 
 # === copier configuration options ===
 # see https://copier.readthedocs.io/en/stable/configuring/#available-settings
@@ -119,46 +141,46 @@ google_sheet_module:
 _subdirectory: template
 _min_copier_version: "9.4.0"
 _jinja_extensions:
-    - jinja2_time.TimeExtension
+  - jinja2_time.TimeExtension
 _exclude:
-    # files or dirs in template/ that should not be copied to the project
-    - "copier.yaml"
-    - "copier.yml"
-    - "~*"
-    - "*.py[co]"
-    - "__pycache__"
-    - ".git"
+  # files or dirs in template/ that should not be copied to the project
+  - "copier.yaml"
+  - "copier.yml"
+  - "~*"
+  - "*.py[co]"
+  - "__pycache__"
+  - ".git"
 
 _skip_if_exists:
-    # files or dirs that should not be overwritten if they already exist in the project
-    - LICENSE
-    - README.md
-    - project/*
-    - src/docs/files/about.md
-    - src/{{project_slug}}/data/*
-    - src/{{project_slug}}/datamodel/*
-    - src/{{project_slug}}/schema/*
-    - tests/test_data.py
+  # files or dirs that should not be overwritten if they already exist in the project
+  - LICENSE
+  - README.md
+  - project/*
+  - src/docs/files/about.md
+  - src/{{project_slug}}/data/*
+  - src/{{project_slug}}/datamodel/*
+  - src/{{project_slug}}/schema/*
+  - tests/test_data.py
 
 _message_after_copy: |
 
-    ** PROJECT CREATION COMPLETE **
+  ** PROJECT CREATION COMPLETE **
 
-    Next step (if you have not previously initialized your project)
-    run "just setup" in the root of your project directory.
+  Next step (if you have not previously initialized your project)
+  run "just setup" in the root of your project directory.
 
 # _tasks:
-    # Commands to execute after generating or updating a project from the template.
-    # - "git init"
-    # - "rm {{ name_of_the_project }}/README.md"
-
-    # Arrays are executed without shell, saving you the work of escaping arguments
-    # - [invoke, "--search-root={{ _copier_conf.src_path }}", after-copy]
-    # Your script can be run by the same Python environment used to run Copier
-    # - ["{{ _copier_python }}", task.py]
-
-    # OS-specific task (supported values are "linux", "macos", "windows" and `None`)
-    # - command: rm {{ name_of_the_project }}/README.md
-    #   when: "{{ _copier_conf.os in  ['linux', 'macos'] }}"
-    # - command: Remove-Item {{ name_of_the_project }}\\README.md
-    #   when: "{{ _copier_conf.os == 'windows' }}"
+#    Commands to execute after generating or updating a project from the template.
+#    - "git init"
+#    - "rm {{ name_of_the_project }}/README.md"
+#
+#   # Arrays are executed without shell, saving you the work of escaping arguments
+#    - [invoke, "--search-root={{ _copier_conf.src_path }}", after-copy]
+#    Your script can be run by the same Python environment used to run Copier
+#    - ["{{ _copier_python }}", task.py]
+#
+#    OS-specific task (supported values are "linux", "macos", "windows" and `None`)
+#    - command: rm {{ name_of_the_project }}/README.md
+#      when: "{{ _copier_conf.os in  ['linux', 'macos'] }}"
+#    - command: Remove-Item {{ name_of_the_project }}\\README.md
+#      when: "{{ _copier_conf.os == 'windows' }}"
