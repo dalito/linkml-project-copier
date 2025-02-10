@@ -14,7 +14,7 @@ project_slug:
   type: str
   help: A slug of the name. Must be a valid and unused Python package name.
   default: >-
-    "{% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}"
+    {% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}
   # regex_search is part of a jinja extension loaded by default.
   # It is case insensitive by default. We need to set ignorecase=False to make it case sensitive.
   validator: >-
