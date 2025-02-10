@@ -35,8 +35,9 @@ config_yaml := if env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "") != "" 
   ""
 }
 gen_doc_args := env_var_or_default("LINKML_GENERATORS_DOC_ARGS", "")
-gen_owl_args := env_var_or_default("LINKML_GENERATORS_OWL_ARGS", "")
 gen_java_args := env_var_or_default("LINKML_GENERATORS_JAVA_ARGS", "")
+gen_owl_args := env_var_or_default("LINKML_GENERATORS_OWL_ARGS", "")
+gen_pydantic_args := env_var_or_default("LINKML_GENERATORS_PYDANTIC_ARGS", "")
 gen_ts_args := env_var_or_default("LINKML_GENERATORS_TYPESCRIPT_ARGS", "")
 
 # Directory variables
@@ -201,8 +202,6 @@ clean: _clean_project
     rm -rf {{docdir}}/*
 
 # Private recipes
-_ensure_pymodel_dir:
-    -mkdir -p {{pymodel}}
 
 _ensure_examples_output:
     -mkdir -p examples/output
