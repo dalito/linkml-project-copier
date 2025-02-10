@@ -31,7 +31,6 @@ jobs:
         # by poetry 2.x triggers a Windows issue https://github.com/pypa/installer/issues/260
         # and also does not work on Ubuntu in gh-actions.
         run: |
-          pipx install rust-just
           pipx install poetry
           pipx inject poetry poetry-dynamic-versioning
 
@@ -40,7 +39,6 @@ jobs:
 
       - name: Build documentation
         run: |
-          just gendoc
           poetry run mkdocs build -d site
           touch site/.nojekyll
 
