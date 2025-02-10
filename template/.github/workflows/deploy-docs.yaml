@@ -49,8 +49,6 @@ jobs:
       - name: Build documentation
         # TODO: Check if this way of combining doc sources is the best way to do it.
         run: |
-          mkdir -p docs
           touch docs/.nojekyll
           just gendoc
-          ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
           mkd-gh-deploy

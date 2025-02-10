@@ -43,7 +43,7 @@ gen_ts_args := env_var_or_default("LINKML_GENERATORS_TYPESCRIPT_ARGS", "")
 src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
-docdir := "docs"
+docdir := "docs/elements"  # Directory for generated documentation
 exampledir := "examples"
 
 # Show current project status
@@ -103,15 +103,16 @@ _gen-examples:
     cp src/data/examples/* {{exampledir}}
 
 # Generate project files
-_gen-project: _ensure_pymodel_dir _compile_sheets
+_gen-project: _compile_sheets
     poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
     mv {{dest}}/*.py {{pymodel}}
+    poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+    @if [ ! ${{gen_java_args}} ]; then \
+      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
+    fi
     @if [ ! ${{gen_owl_args}} ]; then \
       mkdir -p {{dest}}/owl && \
       poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
-    fi
-    @if [ ! ${{gen_java_args}} ]; then \
-      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
     fi
     @if [ ! ${{gen_ts_args}} ]; then \
       poetry run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
@@ -145,8 +146,7 @@ lint:
     poetry run linkml-lint {{source_schema_path}}
 
 # Generate documentation for the schema
-_gendoc: _ensure_docdir
-    cp -r {{src}}/docs/files/* {{docdir}}
+_gendoc:
     poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
@@ -203,9 +203,6 @@ clean: _clean_project
 # Private recipes
 _ensure_pymodel_dir:
     -mkdir -p {{pymodel}}
-
-_ensure_docdir:
-    -mkdir -p {{docdir}}
 
 _ensure_examples_output:
     -mkdir -p examples/output
