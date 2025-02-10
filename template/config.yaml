@@ -1,5 +1,18 @@
 # Configuration of generators (defaults illustrated)
 ---
+# The directory where the generated files are stored
+# directory: "tmp"
+
+# By default all generators are run. Specify here the generators which should not run.
+excludes:
+  - markdown  # The markdown generator is run separately and writes to another directory.
+
+# Alternatively only specify the generators to run (comment out the above "excludes" section)
+# includes:
+#   - markdown
+#   - excel
+
+# Set the arguments for the generators (no matter if they run or not)
 generator_args:
   excel:
     mergeimports: true
@@ -10,9 +23,8 @@ generator_args:
     # throws 'Cannot handle metadata profile: rdfs'
     # metadata_profile: rdfs
   markdown:
-    # mergeimports is true by default. Why is it set here?
     mergeimports: true
-    # directory: docs/
+    directory: "docs/elements"
   graphql:
     mergeimports: true
   java:
@@ -24,8 +36,13 @@ generator_args:
     mergeimports: true
   jsonldcontext:
     mergeimports: true
+  # gen-pydantic is not yet supported by gen-project.
+  #   https://github.com/linkml/linkml/issues/2537
+  # pydantic:
+  #   mergeimports: true
   python:
     mergeimports: true
+    # head: true  # Why does this not work?
   prefixmap:
     mergeimports: true
   proto:
