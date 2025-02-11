@@ -47,12 +47,13 @@ license:
   help: Which license do you want for your project?
   type: str
   choices:
-    - BSD-3
     - MIT
-    - Mozilla Public License 2.0
+    - BSD-3
     - Apache Software License 2.0
+    - Mozilla Public License 2.0
     - GNU LGPL v3.0
     - GNU GPL v3.0
+    - Unlicense (public domain)
   default: MIT
 
 copyright_year:
