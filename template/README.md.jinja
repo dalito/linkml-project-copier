@@ -10,7 +10,7 @@
 
 ## Repository Structure
 
-* [examples/](examples/) - example data
+* [examples/](examples/) - Examples of using the schema
 * [project/](project/) - project files (these files are auto-generated, do not edit)
 * [src/](src/) - source files (edit these)
   * [{{project_slug}}](src/{{project_slug}})
@@ -19,14 +19,15 @@
     * [datamodel](src/{{project_slug}}/datamodel) -- generated
       Python datamodel
 * [tests/](tests/) - Python tests
+* [tests/data](tests/data) - Example data
 
 ## Developer Documentation
 
 The pre-defined commands are written for the command runner [just](https://github.com/casey/just/).
 Use the `just` commands to generate project artefacts:
 * `just` or `just --list`: list all pre-defined tasks
-* `just site`: (re-)create everything
-* `just deploy`: deploys site
+* `just site`: (re-)generate project artefacts & documentation
+* `just deploy`: deploy documentation site to GitHub pages
 
 ## Credits
 

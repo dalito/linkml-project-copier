@@ -142,11 +142,10 @@ _skip_if_exists:
   - LICENSE
   - README.md
   - project/*
-  - src/docs/files/about.md
-  - src/{{project_slug}}/data/*
   - src/{{project_slug}}/datamodel/*
   - src/{{project_slug}}/schema/*
   - tests/test_data.py
+  - tests/data/*
 
 _message_after_copy: |
 
