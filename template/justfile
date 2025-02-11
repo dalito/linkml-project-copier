@@ -45,7 +45,6 @@ src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
 docdir := "docs/elements"  # Directory for generated documentation
-exampledir := "examples"
 
 # Show current project status
 _status: _check-config
@@ -54,7 +53,7 @@ _status: _check-config
 
 # Run initial setup (run this first)
 [group('project management')]
-setup: _check-config _git-init install _gen-project _gen-examples _gendoc _git-add _git-commit
+setup: _check-config _git-init install _gen-project _gendoc _git-add _git-commit
 
 # Install project dependencies
 [group('project management')]
@@ -97,11 +96,6 @@ _compile_sheets:
         poetry run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
         mv {{sheet_module_path}}.tmp {{sheet_module_path}}; \
     fi
-
-# Generate examples
-_gen-examples:
-    mkdir -p {{exampledir}}
-    cp src/data/examples/* {{exampledir}}
 
 # Generate project files
 _gen-project: _compile_sheets
