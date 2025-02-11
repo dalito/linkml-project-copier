@@ -4,7 +4,7 @@ This template uses the code-scaffolding tool [copier](https://copier.readthedocs
 Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
 * Early releases (0.1.x) maintain backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/). This facilitates to experiment with the migration of existing cruft/cookiecutter-based projects.
-* Later releases starting with 0.2.0 will gradually give up compatibility.
+* Starting from 0.2.x we give up compatibility to introduce new features and to re-organise and clean-up the code. The migration from 0.1.x to 0.2.x is not too difficult but requires some manual work.
 
 The generated project uses [just](https://github.com/casey/just) as preferred command runner, even in the 0.1.x releases.
 
@@ -151,9 +151,12 @@ just testdoc
 3. Configure your repository for deploying the documentation as GitHub pages
 
 * Under Settings > Actions > General in section "Workflow Permissions" mark "Read repository and packages permission".
-* Under Pages in section "Build and Deployment":
-  * Under "Source" select "Deploy from a branch"
-  * Under "Branch" select "gh-pages" and "/ (root)"
+* Go to "Actions" tab, select on the left under Actions "Deploy docs", and click the "Run workflow" button on the right.
+  Run from main-branch as suggested and verify successful completion.
+* Now go back to Settings > Pages. In section "Build and Deployment" select
+  * Under "Source": "Deploy from a branch" 
+  * Under "Branch": "gh-pages" and "/ (root)"
+    * Hint: The "gh-pages" branch is created automatically in the first successful run of the "deploy docs" workflow.
 
 ### Step 7: Register the schema
 
@@ -176,16 +179,24 @@ The commands are written to be run at the root of your project.
   git switch -c migrate-to-copier
   ```
 
-
-* Adapt your project and create a copier answers file (`.copier-answers`) by running:
+* Adapt your project and create a copier answers file (`.copier-answers`) by running (this updates to the latest released version):
 
   ```shell
-  copier copy --trust --skip-tasks --vcs-ref=HEAD gh:dalito/linkml-project-copier .
+  copier copy --trust gh:dalito/linkml-project-copier .
   ```
 
-  If you start from a linkml-project-cookiecutter based project,
-  look into the `.cruft.json` file to find out which values you chose when you created your project.
-  Be sure to enter the same values when answering the copier questions.
+  * **Starting from a linkml-project-cookiecutter based project**:
+    You may want to migrate in two steps to reduces the number of changes to review.
+    For the first step, a migration to the 0.1.x-series is suggested,
+    which still has the same directory layout as linkml-project-cookiecutter.
+    The command for migrating to a specific tag/release is:
+
+    ```shell
+    copier copy --trust --vcs-ref v0.1.6 gh:dalito/linkml-project-copier .
+    ```
+
+    Look into the `.cruft.json` file to find out which values you chose when you created your original project.
+    Be sure to enter the same values when answering the copier questions.
 
 * Carefully review the changes that copier made to your project.
 * If you used a cruft/cookiecutter template before, you may delete the cruft file `.cruft.json`.
@@ -200,16 +211,20 @@ You can also change the project by providing different answers to the questions 
 To update your project with changes from the template and to reconfigure your project options, run:
 
 ```shell
-copier update --trust --skip-tasks
+copier update --trust
 ```
 
 To do a pure update without re-configuration run:
 
 ```shell
-copier update --trust --skip-tasks --skip-answered
+copier update --trust --skip-answered
 ```
 
-If you initialized the project from a non-default branch, you must add `--vcs-ref branch-name` also to the update commands.
+If you initialized the project from a non-default branch, you must add the git branch name (or tag name) also to the update commands:
+
+```shell
+copier update --trust --vcs-ref branch-or-tag-name --skip-answered
+```
 
 When updating, Copier will do its best to respect the project evolution by using the answers provided last time.
 However, sometimes this is impossible and conflicts occur.
