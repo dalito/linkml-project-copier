@@ -83,11 +83,11 @@ _update-template:
 _update-linkml:
     poetry add -D linkml@latest
 
-# Generate site locally
+# (Re-)Generate project and documentation locally
 [group('model development')]
 site: _gen-project _gendoc
 
-# Deploy documentation site
+# Deploy documentation site to Github Pages
 [group('deployment')]
 deploy: site
   mkd-gh-deploy
