@@ -154,6 +154,7 @@ just testdoc
 * Under Pages in section "Build and Deployment":
   * Under "Source" select "Deploy from a branch"
   * Under "Branch" select "gh-pages" and "/ (root)"
+    * Hint: The "gh-pages" branch is created automatically in the first successful run of the "deploy docs" workflow.
 
 ### Step 7: Register the schema
 
