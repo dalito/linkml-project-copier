@@ -1,5 +1,7 @@
 /tmp/
-.idea/  # PyCharm files
+# linkml-run-examples output (not useful to have in git in its current form)
+/examples/output/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
