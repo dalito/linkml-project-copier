@@ -53,7 +53,7 @@ _status: _check-config
 
 # Run initial setup (run this first)
 [group('project management')]
-setup: _check-config _git-init install _gen-project _gendoc _git-add _git-commit
+setup: _check-config _git-init install _gen-project gendoc _git-add _git-commit
 
 # Install project dependencies
 [group('project management')]
@@ -84,7 +84,7 @@ _update-linkml:
 
 # (Re-)Generate project and documentation locally
 [group('model development')]
-site: _gen-project _gendoc
+site: _gen-project gendoc
 
 # Deploy documentation site to Github Pages
 [group('deployment')]
@@ -140,13 +140,13 @@ _test-examples: _ensure_examples_output
 lint:
     poetry run linkml-lint {{source_schema_path}}
 
-# Generate documentation for the schema
-_gendoc:
+# Generate markdown documentation for the schema
+gendoc:
     poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
 [group('model development')]
-testdoc: _gendoc _serve
+testdoc: gendoc _serve
 
 # Run documentation server
 _serve:

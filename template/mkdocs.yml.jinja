@@ -13,9 +13,15 @@ plugins:
       execute: false
   - mermaid2:
       version: 11.4.1
+  # TODO rebuild docs on schema change (https://github.com/dalito/linkml-project-copier/issues/39)
+  # - gen-files:
+  #     scripts:
+  #       - gen_pages.py  # or any other name or path
+watch:
+  - src/{{ project_slug }}/schema
 nav:
-  # - Home: home.md
-  - Index: index.md
+  - Home: index.md
+  - Schema: elements/index.md
   - About: about.md
 exclude_docs: |
   /templates-linkml/
