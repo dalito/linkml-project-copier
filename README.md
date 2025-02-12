@@ -154,7 +154,7 @@ just testdoc
 * Go to "Actions" tab, select on the left under Actions "Deploy docs", and click the "Run workflow" button on the right.
   Run from main-branch as suggested and verify successful completion.
 * Now go back to Settings > Pages. In section "Build and Deployment" select
-  * Under "Source": "Deploy from a branch" 
+  * Under "Source": "Deploy from a branch"
   * Under "Branch": "gh-pages" and "/ (root)"
     * Hint: The "gh-pages" branch is created automatically in the first successful run of the "deploy docs" workflow.
 
@@ -192,7 +192,7 @@ The commands are written to be run at the root of your project.
     The command for migrating to a specific tag/release is:
 
     ```shell
-    copier copy --trust --vcs-ref v0.1.6 gh:dalito/linkml-project-copier .
+    copier copy --trust --vcs-ref v0.1.7 gh:dalito/linkml-project-copier .
     ```
 
     Look into the `.cruft.json` file to find out which values you chose when you created your original project.
