@@ -3,8 +3,10 @@
 This template uses the code-scaffolding tool [copier](https://copier.readthedocs.io/) to create a [LinkML](https://github.com/linkml/linkml) project.
 Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
-* Early releases (0.1.x) maintain backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/). This facilitates to experiment with the migration of existing cruft/cookiecutter-based projects.
-* Starting from 0.2.x we give up compatibility to introduce new features and to re-organise and clean-up the code. The migration from 0.1.x to 0.2.x is not too difficult but requires some manual work.
+* Starting from 0.2.x we give up compatibility to introduce new features and to re-organise and clean-up the code.
+* Early releases (0.1.x) have maintained backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/). 
+  This facilitates to experiment with the migration of existing cruft/cookiecutter-based projects.
+  Over time  the migration may become more difficult as the cookiecutter template evolves.
 
 The generated project uses [just](https://github.com/casey/just) as preferred command runner, even in the 0.1.x releases.
 
@@ -192,7 +194,7 @@ The commands are written to be run at the root of your project.
     The command for migrating to a specific tag/release is:
 
     ```shell
-    copier copy --trust --vcs-ref v0.1.6 gh:dalito/linkml-project-copier .
+    copier copy --trust --vcs-ref v0.1.7 gh:dalito/linkml-project-copier .
     ```
 
     Look into the `.cruft.json` file to find out which values you chose when you created your original project.
