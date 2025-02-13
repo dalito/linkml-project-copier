@@ -150,7 +150,7 @@ _update-linkml:
     poetry add -D linkml@latest
 
 _compile_sheets:
-    @if [ ! "{{use_schemasheets}}" ]; then \
+    @if [ "{{use_schemasheets}}" = "true" ]; then \
         poetry run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
         mv {{sheet_module_path}}.tmp {{sheet_module_path}}; \
     fi
