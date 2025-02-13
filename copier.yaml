@@ -71,48 +71,36 @@ add_example:
   help: |
     Add an example schema including python package generation & tests?
        Choose "no" if you want to apply the template to an existing project.
-  type: str
-  choices:
-    - "Yes"
-    - "No"
-  default: "Yes"
+  type: bool
+  default: true
 
 gh_action_pypi:
   help: Use GitHub actions to publish to PyPI?
-  type: str
-  choices:
-    - "Yes"
-    - "No"
-  default: "Yes"
+  type: bool
+  default: true
 
 gh_action_docs_preview:
   help: |
     Use GitHub actions for a documentation preview in pull requests?
-  type: str
-  choices:
-    - "Yes"
-    - "No"
-  default: "No"
+  type: bool
+  default: false
 
 use_schemasheets:
   help: Use Google Sheets for schema definitions?
-  type: str
-  choices:
-    - "Yes"
-    - "No"
-  default: "No"
+  type: bool
+  default: false
 
 google_sheet_id:
   placeholder: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
   help: Google Sheet ID
   type: str
-  when: "{{ use_schemasheets == 'Yes' }}"
+  when: "{{ use_schemasheets }}"
 
 google_sheet_tabs:
   help: Google Sheet tabs
   type: str
   default: "personinfo enums"
-  when: "{{ use_schemasheets == 'Yes' }}"
+  when: "{{ use_schemasheets }}"
 
 google_sheet_module:
   help: Google Sheet module
