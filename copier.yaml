@@ -131,6 +131,8 @@ _skip_if_exists:
   - LICENSE
   - README.md
   - project/*
+  - docs/index.md
+  - docs/about.md
   - src/{{project_slug}}/datamodel/*
   - src/{{project_slug}}/schema/*
   - tests/test_data.py
