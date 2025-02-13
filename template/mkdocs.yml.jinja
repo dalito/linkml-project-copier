@@ -7,6 +7,9 @@ theme:
   #  primary: cyan
   features:
     - content.tabs.link
+
+# for adding extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
+
 plugins:
   - search
   - mknotebooks:
@@ -17,14 +20,18 @@ plugins:
   # - gen-files:
   #     scripts:
   #       - gen_pages.py  # or any other name or path
+
 watch:
   - src/{{ project_slug }}/schema
+
 nav:
   - Home: index.md
   - Schema: elements/index.md
   - About: about.md
+
 exclude_docs: |
   /templates-linkml/
+
 site_url: https://{{github_org}}.github.io/{{project_name}}
 repo_url: https://github.com/{{github_org}}/{{project_name}}
 
