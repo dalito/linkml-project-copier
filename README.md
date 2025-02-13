@@ -3,10 +3,10 @@
 This template uses the code-scaffolding tool [copier](https://copier.readthedocs.io/) to create a [LinkML](https://github.com/linkml/linkml) project.
 Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
-* Starting from 0.2.x we give up compatibility to introduce new features and to re-organise and clean-up the code.
-* Early releases (0.1.x) have maintained backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/). 
-  This facilitates to experiment with the migration of existing cruft/cookiecutter-based projects.
-  Over time  the migration may become more difficult as the cookiecutter template evolves.
+* Starting from 0.2.x we give up compatibility with the directory layout from [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) that we followed initially. This is required to introduce new features and to realise our idea of a cleaner, easier to update linkml project template.
+* Early releases (0.1.x) are backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (same directory layout and commands). 
+  This facilitates experimenting with the migration of existing cruft/cookiecutter-based projects.
+  Over time the migration is expected to become more difficult as the cookiecutter template evolves. We don't plan to maintain compatible releases beyond v0.1.7.
 
 The generated project uses [just](https://github.com/casey/just) as preferred command runner, even in the 0.1.x releases.
 
@@ -233,3 +233,11 @@ However, sometimes this is impossible and conflicts occur.
 They will be inlined into the conflicting files and can be resolved just like any other git conflict.
 
 For more on updating see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
+
+### Notes on specific updates
+
+#### From 0.1.x to 0.2.x
+
+The directory layout has changed a lot for 0.2.0. Series 0.1.x had still the directory layout from linkml-project-cookiecutter. Some steps should be done manually:
+- **Before running the update**: Run `just clean` to remove the folder `docs` which was git-ignored in 0.1.x (and linkml-cookiecutter) but will become the main version-managed docs folder in 0.2.x. 
+- **After running the update** (before committing): Remove the folder `project/docs` which was also gitignored before v0.2.0 and is of no use for 0.2.0 and later releases.
