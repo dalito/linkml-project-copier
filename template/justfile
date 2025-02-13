@@ -96,10 +96,10 @@ clean: _clean_project
 
 # ============== Migrations recipes for Copier ==============
 
-# Hidden command to adjust the directory layout after upgrading a project
+# Hidden command to adjust the directory layout on upgrading a project
 # created with linkml-project-copier v0.1.x to v0.2.0 or newer.
 # Use with care! - It may not work for customized projects.
-_post-upgrade-0.1-to-0.2:
+_post_upgrade_v020:
     -mv docs/*.md docs/elements
     -git mv src/docs/files docs
     -git mv src/docs/templates docs/templates-linkml

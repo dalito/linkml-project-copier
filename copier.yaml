@@ -159,7 +159,7 @@ _migrations:
   # Migrations are only run on update (not on copy) and only if the update goes
   # through or to the specified version.
   - version: v0.2.0
-    command: just _post-upgrade-0.1-to-0.2
+    command: just _post_upgrade_v020
     when: "{{ _stage == 'after' }}"
 
 # _tasks:
