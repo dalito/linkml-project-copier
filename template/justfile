@@ -47,13 +47,10 @@ docdir := "docs/elements"  # Directory for generated documentation
 
 # Initialize a new project (use this for projects not yet under version control)
 [group('project management')]
-setup: _check-config
-  git init
-  install
-  git add .
+setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
-  _gen-project
-  _gendoc
+
+_setup_part2: _gen-project _gendoc
   git add .
   git commit -m "Add generated docs and project artefacts" -a
 
@@ -182,6 +179,18 @@ _gendoc:
 # Run documentation server
 _serve:
     poetry run mkdocs serve
+
+# Initialize git repository
+_git-init:
+    git init
+
+# Add files to git
+_git-add:
+    git add .
+
+# Commit files to git
+_git-commit:
+    git commit -m 'chore: just setup was run' -a
 
 # Show git status
 _git-status:
