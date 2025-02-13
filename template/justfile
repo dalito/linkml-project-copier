@@ -45,6 +45,10 @@ docdir := "docs/elements"  # Directory for generated documentation
 
 # ============== Project recipes ==============
 
+# List all commands as default command. The prefix "_" hides the command.
+_default: _status
+    @just --list
+
 # Initialize a new project (use this for projects not yet under version control)
 [group('project management')]
 setup: _check-config _git-init install _git-add && _setup_part2
@@ -104,10 +108,6 @@ _post_upgrade_v020:
     echo "Migration to v0.2.0 completed! Check the changes carefully before committing them."
 
 # ============== Hidden internal recipes ==============
-
-# List all commands as default command. The prefix "_" hides the command.
-_default: _status
-    @just --list
 
 # Show current project status
 _status: _check-config
