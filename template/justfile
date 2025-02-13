@@ -54,7 +54,7 @@ _default: _status
 setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
 
-_setup_part2: _gen-project _gendoc
+_setup_part2: gen-project _gendoc
   git add .
   git commit -m "Add generated docs and project artefacts" -a
 
@@ -63,9 +63,19 @@ _setup_part2: _gen-project _gendoc
 install:
     poetry install
 
+# Updates project template and LinkML package
+[group('project management')]
+update: _update-template _update-linkml
+
+# Clean all generated files
+[group('project management')]
+clean: _clean_project
+    rm -rf tmp
+    rm -rf {{docdir}}/*
+
 # (Re-)Generate project and documentation locally
 [group('model development')]
-site: _gen-project _gendoc
+site: gen-project _gendoc
 
 # Deploy documentation site to Github Pages
 [group('deployment')]
@@ -85,15 +95,22 @@ lint:
 [group('model development')]
 testdoc: _gendoc _serve
 
-# Updates project template and LinkML package
-[group('project management')]
-update: _update-template _update-linkml
-
-# Clean all generated files
-[group('project management')]
-clean: _clean_project
-    rm -rf tmp
-    rm -rf {{docdir}}/*
+# Generate project files including Python data model
+[group('model development')]
+gen-project: _compile_sheets
+    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
+    mv {{dest}}/*.py {{pymodel}}
+    poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+    @if [ ! ${{gen_java_args}} ]; then \
+      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
+    fi
+    @if [ ! ${{gen_owl_args}} ]; then \
+      mkdir -p {{dest}}/owl && \
+      poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
+    fi
+    @if [ ! ${{gen_ts_args}} ]; then \
+      poetry run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
+    fi
 
 # ============== Migrations recipes for Copier ==============
 
@@ -136,22 +153,6 @@ _compile_sheets:
     @if [ ! "{{use_schemasheets}}" ]; then \
         poetry run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
         mv {{sheet_module_path}}.tmp {{sheet_module_path}}; \
-    fi
-
-# Generate project files
-_gen-project: _compile_sheets
-    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-    mv {{dest}}/*.py {{pymodel}}
-    poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-    @if [ ! ${{gen_java_args}} ]; then \
-      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
-    fi
-    @if [ ! ${{gen_owl_args}} ]; then \
-      mkdir -p {{dest}}/owl && \
-      poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
-    fi
-    @if [ ! ${{gen_ts_args}} ]; then \
-      poetry run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
     fi
 
 # Test schema generation
