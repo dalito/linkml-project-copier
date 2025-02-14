@@ -85,31 +85,6 @@ gh_action_docs_preview:
   type: bool
   default: false
 
-use_schemasheets:
-  help: Use Google Sheets for schema definitions?
-  type: bool
-  default: false
-
-google_sheet_id:
-  placeholder: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
-  help: Google Sheet ID
-  type: str
-  when: "{{ use_schemasheets }}"
-
-google_sheet_tabs:
-  help: Google Sheet tabs
-  type: str
-  default: "personinfo enums"
-  when: "{{ use_schemasheets }}"
-
-google_sheet_module:
-  help: Google Sheet module
-  type: str
-  default: >-
-    {% from pathjoin('includes', 'slugify.jinja') import slugify %}
-    {{ slugify(google_sheet_tabs) }}
-  when: false
-
 # === copier configuration options ===
 # see https://copier.readthedocs.io/en/stable/configuring/#available-settings
 

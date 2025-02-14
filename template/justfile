@@ -21,11 +21,6 @@ shebang := if os() == 'windows' {
 # Environment variables with defaults
 schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "")
 source_schema_path := env_var_or_default("LINKML_SCHEMA_SOURCE_PATH", "")
-use_schemasheets := env_var_or_default("LINKML_USE_SCHEMASHEETS", "No")
-sheet_module := env_var_or_default("LINKML_SCHEMA_GOOGLE_SHEET_MODULE", "")
-sheet_ID := env_var_or_default("LINKML_SCHEMA_GOOGLE_SHEET_ID", "")
-sheet_tabs := env_var_or_default("LINKML_SCHEMA_GOOGLE_SHEET_TABS", "")
-sheet_module_path := source_schema_path / "{{sheet_module}}.yaml"
 config_yaml := if env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "") != "" {
   "--config-file " + env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "")
 } else {
@@ -97,7 +92,7 @@ testdoc: _gendoc _serve
 
 # Generate project files including Python data model
 [group('model development')]
-gen-project: _compile_sheets
+gen-project:
     poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
     mv {{dest}}/*.py {{pymodel}}
     poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
@@ -148,12 +143,6 @@ _update-template:
 # Update LinkML to latest version
 _update-linkml:
     poetry add -D linkml@latest
-
-_compile_sheets:
-    @if [ ! "{{use_schemasheets}}" ]; then \
-        poetry run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
-        mv {{sheet_module_path}}.tmp {{sheet_module_path}}; \
-    fi
 
 # Test schema generation
 _test-schema:
