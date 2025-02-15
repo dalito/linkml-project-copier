@@ -3,19 +3,29 @@
 This template uses the code-scaffolding tool [copier](https://copier.readthedocs.io/) to create a [LinkML](https://github.com/linkml/linkml) project.
 Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
-* Starting from 0.2.x we give up compatibility with the directory layout from [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) that we followed initially. This is required to introduce new features and to realise our idea of a cleaner, easier to update linkml project template.
-* Early releases (0.1.x) are backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (same directory layout and commands).
+* Starting from 0.2.x we give up compatibility with the directory layout from
+  [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/)
+  that we followed initially. This is required to introduce new features
+  and to realise our idea of a cleaner, easier to update linkml project template.
+* Early releases (0.1.x) are backwards compatibility with
+  [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/)
+  (same directory layout and commands).
   This facilitates experimenting with the migration of existing cruft/cookiecutter-based projects.
-  Over time the migration is expected to become more difficult as the cookiecutter template evolves. We don't plan to maintain compatible releases beyond v0.1.7.
+  Over time the migration is expected to become more difficult as the cookiecutter template evolves.
+  We don't plan to maintain compatible releases beyond v0.1.7.
 
 The generated project uses [just](https://github.com/casey/just) as preferred command runner, even in the 0.1.x releases.
 
-> The starting point of this template was [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10).
-> The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was also included (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
+> The starting point of this template was [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/)
+> (commit [1094cf2](https://github.com/linkml/linkml-project-cookiecutter/commit/1094cf2ce542028ab0017eaa059dd49cdde81fb5), date 2025-01-10).
+> The code from the [just command runner PR](https://github.com/linkml/linkml-project-cookiecutter/pull/127) was also included
+> (up to commit [3eb2522](https://github.com/linkml/linkml-project-cookiecutter/tree/3eb2522f5baa9e8f27ffb4ae28c0134a42d72c9d)).
 
 ## Prerequisites
 
-The following are required and recommended tools for using this copier template and the LinkML project that it generates. This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)! We assume that you have full internet access.
+The following are required and recommended tools for using this copier template and the LinkML project that it generates.
+This is all one-time setup, so if you have already done it skip to the [next section](#creating-a-new-project)!
+We assume that you have full internet access.
 
 * **git / GitHub account**
 
@@ -29,7 +39,7 @@ The following are required and recommended tools for using this copier template 
 * **pipx**
 
   pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools.
-  To install pipx follow the instructions here: https://pypa.github.io/pipx/installation/
+  To install pipx follow their [instructions](https://pypa.github.io/pipx/installation/).
 
 * **Poetry**
 
@@ -121,15 +131,40 @@ just setup
 
 Edit the schema (the .yaml file) in the `src/my_awesome_schema/schema` folder with an editor of your choice.
 
+The project contains a pre-commit configuration for development tools that help with writing consistent, well-formatted schemas
+(spell checkers [codespell](https://github.com/codespell-project/codespell) & [typos](https://github.com/crate-ci/typos),
+[yamllint](https://github.com/adrienverge/yamllint) for consistent formatting of the schema-yaml file,
+[ruff](https://docs.astral.sh/ruff/) to format and lint Python code).
+To use this
+
+* install pre-commit with: `pipx install pre-commit`
+* activate it in the project by running at the root of the project: `pre-commit install`
+
+Once installed pre-commit will run the checks on every commit and reject the commit if errors are found;
+it will try to auto-correct several types of errors.
+It is also possible to run the checks manually with `pre-commit run -a`.
+
 ### Step 4: Validate the schema
 
 ```shell
 just test
 ```
 
+This commands generates the project artefacts from the schema, runs pytest for the Python datamodel and tests loading all valid & invalid data examples.
+
+Another important command to check your schema is
+
+```shell
+just lint
+```
+
+which runs the linkML linter on your schema.
+
 ### Step 5: Generate documentation locally
 
-LinkML generates schema documentation automatically. The template includes the configuration for generating and publishing the documentation with GitHub whenever you push schema changes to GitHub. The published documentation can be found at a URL like this one:
+LinkML generates schema documentation automatically.
+The template includes the configuration for generating and publishing the documentation with GitHub whenever you push schema changes to GitHub.
+The published documentation can be found at a URL like this one:
 `https://{github-user-or-organization}.github.io/{project-name}/`
 
 You can also preview the documentation locally before pushing to GitHub by running:
@@ -140,7 +175,8 @@ just testdoc
 
 ### Step 6: Create a GitHub project
 
-1. Go to https://github.com/new and follow the instructions, being sure to NOT add a `README` or `.gitignore` file (this copier template will add those files for you)
+1. Open [GitHub new project](https://github.com/new) and follow the instructions, being sure to NOT add a `README` or `.gitignore` file
+   (this copier template will add those files for you)
 
 2. Add the remote to your local git repository:
 
@@ -232,12 +268,34 @@ When updating, Copier will do its best to respect the project evolution by using
 However, sometimes this is impossible and conflicts occur.
 They will be inlined into the conflicting files and can be resolved just like any other git conflict.
 
-For more on updating see copier´s [documentation](https://copier.readthedocs.io/en/stable/updating/).
+For more on updating see copier's [documentation](https://copier.readthedocs.io/en/stable/updating/).
 
 ### Notes on specific updates
 
 #### From 0.1.x to 0.2.x
 
-The directory layout has changed a lot for 0.2.0. Series 0.1.x had still the directory layout from linkml-project-cookiecutter. Some steps should be done manually:
-- **Before running the update**: Run `just clean` to remove the folder `docs` which was git-ignored in 0.1.x (and linkml-cookiecutter) but will become the main version-managed docs folder in 0.2.x.
-- **After running the update** (before committing): Remove the folder `project/docs` which was also gitignored before v0.2.0 and is of no use for 0.2.0 and later releases.
+The directory layout has changed a lot with the v0.2.0 release.
+Series 0.1.x had still the directory layout from linkml-project-cookiecutter.
+For the update, some directories have to be cleaned up.
+Since copier can't do this automatically, you have to do the following steps manually:
+
+* **Before running the update**: Run `just clean` to remove the folder `docs`
+  which was git-ignored in 0.1.x (and linkml-cookiecutter) but will become the main version-managed docs folder in 0.2.x.
+* **After running the update** (before committing): Remove the folder `project/docs`
+  which was also gitignored before v0.2.0 and is of no use for 0.2.0 and later releases.
+
+## Contributors
+
+A big thanks to all [contributors](https://github.com/nfdi4cat/pid4cat-model/graphs/contributors).
+
+Main author:
+
+* David Linke (ORCID: 0000-0002-5898-1820) - Idea, initial setup of repository and current maintainer.
+
+## License
+
+The code in this repository is distributed under MIT license.
+
+## Acknowledgement
+
+[linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter) provided a great basis for starting this new linkml project template.
