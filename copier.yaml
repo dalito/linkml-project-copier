@@ -48,12 +48,11 @@ license:
   type: str
   choices:
     - MIT
-    - BSD-3
-    - Apache Software License 2.0
-    - Mozilla Public License 2.0
-    - GNU LGPL v3.0
-    - GNU GPL v3.0
-    - Unlicense (public domain)
+    - BSD-3-Clause
+    - Apache-2.0
+    - MPL-2.0
+    - LGPL-3.0-only
+    - GPL-3.0-only
   default: MIT
 
 copyright_year:
