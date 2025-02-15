@@ -3,11 +3,12 @@
 # The directory where the generated files are stored
 # directory: "tmp"
 
-# By default all generators are run. Specify here the generators which should not run.
+# By default all generators are run. Specify here the ones to skip.
 excludes:
-  - markdown  # The markdown generator is run separately and writes to another directory.
+  - markdown
 
-# Alternatively only specify the generators to run (comment out the above "excludes" section)
+# Alternatively only specify the generators to run
+# (comment out the above "excludes" section)
 # includes:
 #   - markdown
 #   - excel

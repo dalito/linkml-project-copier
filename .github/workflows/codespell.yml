@@ -1,7 +1,6 @@
----
 name: Codespell
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches: [main]
   pull_request:
@@ -11,7 +10,7 @@ permissions: {}
 
 jobs:
   codespell:
-    name: Check for spelling errors
+    name: Spell check with codespell
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,7 +19,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      - name: Codespell
+      - name: Run codespell on Repo
         uses: codespell-project/actions-codespell@406322ec52dd7b488e48c1c4b82e2a8b3a1bf630
         with:
           skip: '*.js'

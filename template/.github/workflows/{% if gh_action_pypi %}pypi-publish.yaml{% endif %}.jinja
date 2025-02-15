@@ -1,6 +1,8 @@
 ---
 name: Publish Python Package
 
+# Publishes with trusted publishing toPublishes with trusted publishing toPublishes with trusted publishing toPublishes with trusted publishing toPublishes with trusted publishing to
+
 # Publishes with trusted publishing to
 # - PyPI on releases created in GitHub UI if status is published.
 #   For draft status, nothing happens.
@@ -8,7 +10,7 @@ name: Publish Python Package
 #
 # More on trusted publishing: https://docs.pypi.org/trusted-publishers/
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     tags:
       # GitHub glob matching is limited [1]. So we can't define a pattern matching
@@ -36,8 +38,9 @@ jobs:
           python-version: 3.9
 
       - name: Install just & poetry incl. plugins
-        # We install poetry-dynamic-versioning into pipx because the automatic installallation
-        # by poetry 2.x triggers a Windows issue https://github.com/pypa/installer/issues/260
+        # We install poetry-dynamic-versioning into pipx because the automatic
+        # install by poetry 2.x triggers a Windows issue
+        # https://github.com/pypa/installer/issues/260
         # and also does not work on Ubuntu in gh-actions.
         run: |
           pipx install rust-just

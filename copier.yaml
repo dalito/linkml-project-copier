@@ -1,9 +1,9 @@
 # === Include other yaml files (optional) ===
-# see https://copier.readthedocs.io/en/stable/configuring/#include-other-yaml-files
+# https://copier.readthedocs.io/en/stable/configuring/#include-other-yaml-files
 
 
-# === Questions to ask the user when generating a project from this template. ===
-# see https://copier.readthedocs.io/en/stable/configuring/#advanced-prompt-formatting
+# === Questions to answer when generating a project from this template. ===
+# https://copier.readthedocs.io/en/stable/configuring/#advanced-prompt-formatting
 
 project_name:
   type: str
@@ -14,13 +14,16 @@ project_slug:
   type: str
   help: A slug of the name. Must be a valid and unused Python package name.
   default: >-
-    {% from pathjoin('includes', 'slugify.jinja') import slugify %}{{ slugify(project_name) }}
+    {% from pathjoin('includes', 'slugify.jinja') import slugify %}
+    {{ slugify(project_name) }}
   # regex_search is part of a jinja extension loaded by default.
-  # It is case insensitive by default. We need to set ignorecase=False to make it case sensitive.
+  # It is case insensitive by default. We need to set ignorecase=False to make
+  # it case sensitive.
   validator: >-
-    {% if not (project_slug | regex_search('^[a-z][_a-z0-9\-]+$', ignorecase=False)) %}
-    project_slug must start with a lowercase letter, followed by lowercase letters, digits,
-    dashes or underscores.
+    {% if not (project_slug | regex_search('^[a-z][_a-z0-9\-]+$',
+       ignorecase=False)) %}
+    project_slug must start with a lowercase letter, followed by lowercase
+    letters, digits, dashes or underscores.
     {% endif %}
 
 email:
@@ -85,14 +88,14 @@ gh_action_docs_preview:
   default: false
 
 # === copier configuration options ===
-# see https://copier.readthedocs.io/en/stable/configuring/#available-settings
+# https://copier.readthedocs.io/en/stable/configuring/#available-settings
 
 _subdirectory: template
 _min_copier_version: "9.4.0"
 _jinja_extensions:
   - jinja2_time.TimeExtension
 _exclude:
-  # files or dirs in template/ that should not be copied to the project
+  # Files or dirs in template/ that should not be copied to the project
   - "copier.yaml"
   - "copier.yml"
   - "~*"
@@ -101,7 +104,7 @@ _exclude:
   - ".git"
 
 _skip_if_exists:
-  # files or dirs that should not be overwritten if they already exist in the project
+  # Files or dirs to not overwrite/update if they already exist in the project
   - LICENSE
   - README.md
   - project/*
@@ -127,16 +130,18 @@ _migrations:
     when: "{{ _stage == 'after' }}"
 
 # _tasks:
-#    Commands to execute after generating or updating a project from the template.
+#    # Commands to execute after generating or updating a project from the
+#    # template.
 #    - "git init"
 #    - "rm {{ name_of_the_project }}/README.md"
 #
-#   # Arrays are executed without shell, saving you the work of escaping arguments
+#   # Arrays are executed without shell, saving you the work of escaping
+#   # arguments
 #    - [invoke, "--search-root={{ _copier_conf.src_path }}", after-copy]
 #    Your script can be run by the same Python environment used to run Copier
 #    - ["{{ _copier_python }}", task.py]
 #
-#    OS-specific task (supported values are "linux", "macos", "windows" and `None`)
+#    # OS-specific task (allowed names: "linux", "macos", "windows", no value)
 #    - command: rm {{ name_of_the_project }}/README.md
 #      when: "{{ _copier_conf.os in  ['linux', 'macos'] }}"
 #    - command: Remove-Item {{ name_of_the_project }}\\README.md
