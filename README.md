@@ -4,7 +4,7 @@ This template uses the code-scaffolding tool [copier](https://copier.readthedocs
 Copier supports code lifecycle management, allowing you to seamlessly incorporate updates into your project when the template is enhanced.
 
 * Starting from 0.2.x we give up compatibility with the directory layout from [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) that we followed initially. This is required to introduce new features and to realise our idea of a cleaner, easier to update linkml project template.
-* Early releases (0.1.x) are backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (same directory layout and commands). 
+* Early releases (0.1.x) are backwards compatibility with [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter/) (same directory layout and commands).
   This facilitates experimenting with the migration of existing cruft/cookiecutter-based projects.
   Over time the migration is expected to become more difficult as the cookiecutter template evolves. We don't plan to maintain compatible releases beyond v0.1.7.
 
@@ -33,7 +33,7 @@ The following are required and recommended tools for using this copier template 
 
 * **Poetry**
 
-  Poetry is a Python project management tool. 
+  Poetry is a Python project management tool.
   You will use it in your generated project to manage dependencies and build distribution files.
   Install Poetry by running:
 
@@ -156,7 +156,7 @@ just testdoc
 * Go to "Actions" tab, select on the left under Actions "Deploy docs", and click the "Run workflow" button on the right.
   Run from main-branch as suggested and verify successful completion.
 * Now go back to Settings > Pages. In section "Build and Deployment" select
-  * Under "Source": "Deploy from a branch" 
+  * Under "Source": "Deploy from a branch"
   * Under "Branch": "gh-pages" and "/ (root)"
     * Hint: The "gh-pages" branch is created automatically in the first successful run of the "deploy docs" workflow.
 
@@ -239,5 +239,5 @@ For more on updating see copier´s [documentation](https://copier.readthedocs.io
 #### From 0.1.x to 0.2.x
 
 The directory layout has changed a lot for 0.2.0. Series 0.1.x had still the directory layout from linkml-project-cookiecutter. Some steps should be done manually:
-- **Before running the update**: Run `just clean` to remove the folder `docs` which was git-ignored in 0.1.x (and linkml-cookiecutter) but will become the main version-managed docs folder in 0.2.x. 
+- **Before running the update**: Run `just clean` to remove the folder `docs` which was git-ignored in 0.1.x (and linkml-cookiecutter) but will become the main version-managed docs folder in 0.2.x.
 - **After running the update** (before committing): Remove the folder `project/docs` which was also gitignored before v0.2.0 and is of no use for 0.2.0 and later releases.
