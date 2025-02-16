@@ -21,6 +21,11 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 - Improved 0.2.x-migration message for `just update`.
 
+### Fixed
+
+- Moving files in the 0.2.0-migration was incomplete and gave errors due to non-existing folders.
+  The just recipe was replaced by a new Python recipe to work around the limitations of `git mv`.
+
 ## Release [0.2.1] - 2025-02-16
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.1...v0.2.0)
