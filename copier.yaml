@@ -107,9 +107,10 @@ _skip_if_exists:
   # Files or dirs to not overwrite/update if they already exist in the project
   - LICENSE
   - README.md
-  - project/*
   - docs/index.md
   - docs/about.md
+  - examples/README.md
+  - project/*
   - src/{{project_slug}}/datamodel/*
   - src/{{project_slug}}/schema/*
   - tests/test_data.py
