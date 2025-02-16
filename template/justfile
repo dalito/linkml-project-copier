@@ -113,11 +113,27 @@ gen-project:
 # created with linkml-project-copier v0.1.x to v0.2.0 or newer.
 # Use with care! - It may not work for customized projects.
 _post_upgrade_v020:
-    -mv docs/*.md docs/elements
-    -git mv src/docs/files docs
-    -git mv src/docs/templates docs/templates-linkml
-    -git mv src/data/examples tests/data/
-    echo "Migration to v0.2.x completed! Check the changes carefully before committing them."
+    #!{{shebang}}
+    import subprocess
+    from pathlib import Path
+    # Git move files from folder src to folder dest
+    tasks = [
+        (Path("src/docs/files"), Path("docs")),
+        (Path("src/docs/templates"), Path("docs/templates-linkml")),
+        (Path("src/data/examples"), Path("tests/data/")),
+    ]
+    for src, dest in tasks:
+        for path_obj in src.rglob("*"):
+            if not path_obj.is_file():
+                continue
+            file_dest = dest / path_obj.relative_to(src)
+            if not file_dest.parent.exists():
+                file_dest.parent.mkdir(parents=True)
+            print(f"Moving {path_obj} --> {file_dest}")
+            subprocess.run(["git", "mv", str(path_obj), str(file_dest)])
+    print(
+        "Migration to v0.2.x completed! Check the changes carefully before committing."
+    )
 
 # ============== Hidden internal recipes ==============
 
