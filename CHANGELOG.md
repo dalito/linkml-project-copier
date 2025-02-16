@@ -2,21 +2,25 @@
 
 This changelog provides a high-level overview of changes.
 From v0.2.0 onwards, the versioning follows the principles of [Semantic Versioning](https://semver.org/).
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 <!-- possible sections:
     Added       for new features.
-    Changed     for changes in existing functionality.
     Fixed       for any bug fixes.
+    Changed     for changes in existing functionality.
+    Breaking    for changes that are backward incompatible
     Deprecated  for soon-to-be removed features.
     Removed     for now removed features.
     Security    in case of vulnerabilities.
 -->
-<!--
 ## Unreleased
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.1...main)
--->
+
+### Changed
+
+- Improved 0.2.x-migration message for `just update`.
+
 ## Release [0.2.1] - 2025-02-16
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.1...v0.2.0)
@@ -30,6 +34,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Typos spell checker as gh-action for the repo (but not for the generated project). #50
 - Added a README to the schema subfolder so that it is added to git even in absence of a schema file.
 
+### Fixed
+
+- Syntax of `just setup` recipe.
+- Invalid just recipe name for migrating from 0.1.x to 0.2.x which prevented execution on copier update.
+- Excessive whitespace generation in jinja-templates (e.g. in LICENSE files)
+- Some LICENSES were not correctly copied to the generated project. #52
+- Wrong jinja escaping for creating the example schema and test-page-build action. This led to the creation of the files even if the question was answered with "no" in copier.
+
 ### Changed
 
 - All yes/no question are now treated as type bool in copier.
@@ -38,14 +50,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Make `just gen-project` a visible command (it was already present but hidden).
 - Improved yamllint configuration and reformatted all non-conforming yaml files in the project. #50
 - Change license of linkml-project-copier from CC0 to MIT. #49
-
-### Fixed
-
-- Syntax of `just setup` recipe.
-- Invalid just recipe name for migrating from 0.1.x to 0.2.x which prevented execution on copier update.
-- Excessive whitespace generation in jinja-templates (e.g. in LICENSE files)
-- Some LICENSES were not correctly copied to the generated project. #52
-- Wrong jinja escaping for creating the example schema and test-page-build action. This led to the creation of the files even if the question was answered with "no" in copier.
 
 ### Removed
 
@@ -103,13 +107,13 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 - Add .editorconfig to template & project. #29
 
-### Changed
-
-- Give gh-pages bot a name/email for a better git log. #28
-
 ### Fixed
 
 - Fix clean recipe. #35
+
+### Changed
+
+- Give gh-pages bot a name/email for a better git log. #28
 
 ## Release [0.1.5] - 2025-02-08
 
@@ -117,7 +121,7 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 [0.1.5]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.5
 
-### Fixes
+### Fixed
 
 - deploy-docs action was failing because credentials were removed directly after checkout although they were still needed later.
 
@@ -127,7 +131,7 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 [0.1.4]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.4
 
-### Fixes
+### Fixed
 
 - install cmd in docs-building actions. #26
 
@@ -137,7 +141,7 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 [0.1.3]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.3
 
-### Fixes
+### Fixed
 
 - clean command should not remove README and init.py. #22
 
@@ -180,7 +184,7 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ### Changed
 
-vs. linkml-project-cookiecutter:
+In comparison to linkml-project-cookiecutter:
 
 - Switch from cruft/cookiecutter to copier. #3
 - Replace hooks by copier features and improve updates. #5
@@ -188,6 +192,6 @@ vs. linkml-project-cookiecutter:
 
 ### Breaking
 
-vs. linkml-project-cookiecutter:
+In comparison to linkml-project-cookiecutter:
 
 - dot-env-standard compliant formatting of the configuration file (`config.public.mk`). This breaks Makefile-compatibility. See the notes in the file to restore make-conformity.

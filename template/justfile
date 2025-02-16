@@ -117,7 +117,7 @@ _post_upgrade_v020:
     -git mv src/docs/files docs
     -git mv src/docs/templates docs/templates-linkml
     -git mv src/data/examples tests/data/
-    echo "Migration to v0.2.0 completed! Check the changes carefully before committing them."
+    echo "Migration to v0.2.x completed! Check the changes carefully before committing them."
 
 # ============== Hidden internal recipes ==============
 
@@ -138,7 +138,7 @@ _check-config:
 
 # Update project template
 _update-template:
-    copier update --trust --skip-answered --skip-tasks
+    copier update --trust --skip-answered
 
 # Update LinkML to latest version
 _update-linkml:
