@@ -71,7 +71,7 @@ We assume that you have full internet access.
 * **copier**
 
   Copier is a tool for generating projects based on a template (like this one!).
-  It also allows re-configuring the projects and to keep them update if the original template changes.
+  It also allows re-configuring the projects and to keep them updated when the original template changes.
   To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
   Install both with pipx by running:
 
@@ -131,18 +131,17 @@ just setup
 
 Edit the schema (the .yaml file) in the `src/my_awesome_schema/schema` folder with an editor of your choice.
 
-The project contains a pre-commit configuration for development tools that help with writing consistent, well-formatted schemas
-(spell checkers [codespell](https://github.com/codespell-project/codespell) & [typos](https://github.com/crate-ci/typos),
-[yamllint](https://github.com/adrienverge/yamllint) for consistent formatting of the schema-yaml file,
-[ruff](https://docs.astral.sh/ruff/) to format and lint Python code).
-To use this
+For developing consistent, well-formatted schemas, the project provides a [pre-commit](https://pre-commit.com/) configuration for some helpful tools.
+Included are [yamllint](https://github.com/adrienverge/yamllint) for consistent formatting of the schema-yaml file,
+[ruff](https://docs.astral.sh/ruff/) for formatting and linting Python code and
+the spell checkers [codespell](https://github.com/codespell-project/codespell) and [typos](https://github.com/crate-ci/typos). To use this
 
 * install pre-commit with: `pipx install pre-commit`
-* activate it in the project by running at the root of the project: `pre-commit install`
+* activate pre-commit in the project by running (at the root of the project): `pre-commit install`
 
-Once installed pre-commit will run the checks on every commit and reject the commit if errors are found;
-it will try to auto-correct several types of errors.
-It is also possible to run the checks manually with `pre-commit run -a`.
+Once installed pre-commit will perform the checks on every commit and reject a commit if errors are found;
+it will even auto-correct several types of errors.
+You can also run the pre-configured checks manually with `pre-commit run -a`.
 
 ### Step 4: Validate the schema
 
@@ -276,7 +275,7 @@ For more on updating see copier's [documentation](https://copier.readthedocs.io/
 
 The directory layout has changed a lot with the v0.2.0 release.
 Series 0.1.x had still the directory layout from linkml-project-cookiecutter.
-For the update, some directories have to be cleaned up.
+For the update some directories have to be cleaned up.
 Since copier can't do this automatically, you have to do the following steps manually:
 
 * **Before running the update**: Run `just clean` to remove the folder `docs`
