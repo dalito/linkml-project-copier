@@ -19,7 +19,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ### Added
 
-- Typos integration with pre-commit (was only an gh-action before)
+- Typos integration with pre-commit (was only an gh-action before). #58
 
 ## Release [0.2.2] - 2025-02-17
 

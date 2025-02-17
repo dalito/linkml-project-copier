@@ -14,7 +14,7 @@ repos:
     rev: v1.35.1
     hooks:
       - id: yamllint
-        args: [--strict, -c=/path/to/.yamllint]
+        args: [-c=.yamllint.yaml]
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
