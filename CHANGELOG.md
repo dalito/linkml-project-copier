@@ -17,6 +17,10 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...main)
 
+### Added
+
+- Typos integration with pre-commit (was only an gh-action before)
+
 ## Release [0.2.2] - 2025-02-17
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...v0.2.1)
