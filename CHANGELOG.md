@@ -21,6 +21,14 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 - Typos integration with pre-commit (was only an gh-action before). #58
 
+### Fixed
+
+- Fix yamllint config-location in pre-commit configuration of the project. #59
+
+### Changed
+
+- The generated part of the documentation is now git-ignored (`docs/elements/*.md`). #60
+
 ## Release [0.2.2] - 2025-02-17
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...v0.2.1)
