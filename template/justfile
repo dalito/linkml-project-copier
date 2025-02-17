@@ -112,7 +112,10 @@ gen-project:
 # Hidden command to adjust the directory layout on upgrading a project
 # created with linkml-project-copier v0.1.x to v0.2.0 or newer.
 # Use with care! - It may not work for customized projects.
-_post_upgrade_v020:
+_post_upgrade_v020: && _post_upgrade_v020py
+    mv docs/*.md docs/elements
+
+_post_upgrade_v020py:
     #!{{shebang}}
     import subprocess
     from pathlib import Path

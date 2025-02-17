@@ -23,11 +23,11 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ### Fixed
 
-- Fix yamllint config-location in pre-commit configuration of the project. #59
+- Fix yamllint config-location in pre-commit configuration of the project. #60
 
 ### Changed
 
-- The generated part of the documentation is now git-ignored (`docs/elements/*.md`). #60
+- The generated part of the documentation is now git-ignored (`docs/elements/*.md`). #59
 
 ## Release [0.2.2] - 2025-02-17
 
