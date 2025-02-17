@@ -15,7 +15,13 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 -->
 ## Unreleased
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.1...main)
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...main)
+
+## Release [0.2.1] - 2025-02-17
+
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...v0.2.1)
+
+[0.2.2]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.2.2
 
 ### Changed
 
@@ -23,8 +29,8 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ### Fixed
 
-- Moving files in the 0.2.0-migration was incomplete and gave errors due to non-existing folders.
-  The just recipe was replaced by a new Python recipe to work around the limitations of `git mv`.
+- Moving files in the 0.2.0-migration was incomplete and gave git errors due to non-existing folders.
+  The just shell recipe was replaced by a new Python recipe to work around the limitations of `git mv`.
 
 ## Release [0.2.1] - 2025-02-16
 
