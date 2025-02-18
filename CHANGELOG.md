@@ -25,6 +25,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 - Fix yamllint config-location in pre-commit configuration of the project. #60
 - Generate markdown schema documentation as part of docs build in gh-actions.
+- Fix clean command to remove only md-files from `docs/elements`
 
 ### Changed
 
