@@ -24,10 +24,12 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 ### Fixed
 
 - Fix yamllint config-location in pre-commit configuration of the project. #60
+- Generate markdown schema documentation as part of docs build in gh-actions.
 
 ### Changed
 
 - The generated part of the documentation is now git-ignored (`docs/elements/*.md`). #59
+- Make gen-doc a visible just command (was already present as "_gendoc").
 
 ## Release [0.2.2] - 2025-02-17
 
