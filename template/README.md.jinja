@@ -10,16 +10,18 @@
 
 ## Repository Structure
 
+* [docs/](docs/) - mkdocs-managed documentation
+  * [elements/](docs/elements/) - generated schema documentation
 * [examples/](examples/) - Examples of using the schema
 * [project/](project/) - project files (these files are auto-generated, do not edit)
 * [src/](src/) - source files (edit these)
   * [{{project_slug}}](src/{{project_slug}})
-    * [schema](src/{{project_slug}}/schema) -- LinkML schema
+    * [schema/](src/{{project_slug}}/schema) -- LinkML schema
       (edit this)
-    * [datamodel](src/{{project_slug}}/datamodel) -- generated
+    * [datamodel/](src/{{project_slug}}/datamodel) -- generated
       Python datamodel
 * [tests/](tests/) - Python tests
-* [tests/data](tests/data) - Example data
+  * [data/](tests/data) - Example data
 
 ## Developer Tools
 
