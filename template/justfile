@@ -50,8 +50,12 @@ setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
 
 _setup_part2: gen-project gen-doc
-  git add .
-  git commit -m "Add generated docs and project artefacts" -a
+  @echo Various model representations were created under project/. \
+   Firstly, they are ignored by git. You decide if you want to add them to the \
+   tracking via git or git-ignore them as they can be regenerated at any time. \
+   For adding specific files, just add !project/[foldername]/* to your \
+   .gitignore file.
+
 
 # Install project dependencies
 [group('project management')]
