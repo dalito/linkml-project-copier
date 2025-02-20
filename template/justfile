@@ -101,7 +101,7 @@ testdoc: gen-doc _serve
 
 # Generate the Python data model
 gen-python:
-poetry run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
+  poetry run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
 
 # Generate project files including Python data model
 [group('model development')]
