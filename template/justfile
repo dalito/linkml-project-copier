@@ -99,6 +99,10 @@ gen-doc:
 [group('model development')]
 testdoc: gen-doc _serve
 
+# Generate the Python data model
+gen-python:
+poetry run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
+
 # Generate project files including Python data model
 [group('model development')]
 gen-project:
@@ -177,7 +181,7 @@ _test-schema:
     poetry run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
 # Run Python unit tests with pytest
-_test-python:
+_test-python: gen-python
     poetry run python -m pytest
 
 # Run example tests
