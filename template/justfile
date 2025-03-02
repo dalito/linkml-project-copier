@@ -51,12 +51,12 @@ setup: _check-config _git-init install _git-add && _setup_part2
   git commit -m "Initialise git with minimal project" -a
 
 _setup_part2: gen-project gen-doc
-  @echo Various model representations were created under project/. \
-   Firstly, they are ignored by git. You decide if you want to add them to the \
-   tracking via git or git-ignore them as they can be regenerated at any time. \
-   For adding specific files, just add !project/[foldername]/* to your \
-   .gitignore file.
-
+  @echo
+  @echo '=== Setup completed! ==='
+  @echo 'Various model representations have been created under directory "project". By default'
+  @echo 'they are ignored by git. You decide whether you want to add them to git tracking or'
+  @echo 'continue to git-ignore them as they can be regenerated if needed.'
+  @echo 'For tracking specific subfolders, add !project/[foldername]/* line(s) to ".gitignore".'
 
 # Install project dependencies
 [group('project management')]
