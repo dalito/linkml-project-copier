@@ -19,8 +19,8 @@ shebang := if os() == 'windows' {
 }
 
 # Environment variables with defaults
-schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "")
-source_schema_path := env_var_or_default("LINKML_SCHEMA_SOURCE_PATH", "")
+schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "_no_schema_given_")
+source_schema_dir := env_var_or_default("LINKML_SCHEMA_SOURCE_DIR", "")
 config_yaml := if env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "") != "" {
   "--config-file " + env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "")
 } else {
@@ -36,6 +36,7 @@ gen_ts_args := env_var_or_default("LINKML_GENERATORS_TYPESCRIPT_ARGS", "")
 src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
+source_schema_path := source_schema_dir / schema_name + ".yaml"
 docdir := "docs/elements"  # Directory for generated documentation
 
 # ============== Project recipes ==============
@@ -88,11 +89,12 @@ test: _test-schema _test-python _test-examples
 # Run linting
 [group('model development')]
 lint:
-    poetry run linkml-lint {{source_schema_path}}
+    poetry run linkml-lint {{source_schema_dir}}
 
 # Generate md documentation for the schema
 [group('model development')]
 gen-doc:
+    rm -rf {{docdir}}/*.md
     poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
@@ -110,9 +112,7 @@ gen-project:
     poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
     mv {{dest}}/*.py {{pymodel}}
     poetry run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
-    @if [ ! ${{gen_java_args}} ]; then \
-      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
-    fi
+    poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
     @if [ ! ${{gen_owl_args}} ]; then \
       mkdir -p {{dest}}/owl && \
       poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
@@ -233,8 +233,9 @@ _clean_project:
         else:
             d.unlink()
 
-_ensure_examples_output:
+_ensure_examples_output:  # Ensure a clean examples/output directory exists
     -mkdir -p examples/output
+    -rm -rf examples/output/*.*
 
 # ============== Include project-specific recipes ==============
 
