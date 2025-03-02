@@ -15,7 +15,13 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 -->
 ## Unreleased
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...main)
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.0...main)
+
+## Release [0.3.0] - 2025-03-02
+
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...0.3.0)
+
+[0.3.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.3.0
 
 ### Added
 
@@ -25,12 +31,24 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 - Fix yamllint config-location in pre-commit configuration of the project. #60
 - Generate markdown schema documentation as part of docs build in gh-actions.
-- Fix clean command to remove only md-files from `docs/elements`
+- Remove old files from `docs/elemnents" before re-creating markdown files. #66
+- Fix clean command to remove only md-files from `docs/elements`.
+- Generate java code from model. #70
+- Clean `examples/output` folder before re-creating its content in recipe `just test`. #72
 
 ### Changed
 
 - The generated part of the documentation is now git-ignored (`docs/elements/*.md`). #59
 - Make gen-doc a visible just command (was already present as "_gendoc").
+- Don't commit project artifacts on initialisation. #65
+- Let `just lint` recipe lint all schema files in schema dir instead of only
+  the main schema. #71
+
+### Breaking
+
+- The environment variable to the schema file `LINKML_SCHEMA_SOURCE_PATH` was
+  replaced by a new environment variable `LINKML_SCHEMA_SOURCE_DIR` pointing to
+  the directory with schema files.
 
 ## Release [0.2.2] - 2025-02-17
 
