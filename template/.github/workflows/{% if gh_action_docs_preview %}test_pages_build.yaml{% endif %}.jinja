@@ -13,13 +13,17 @@ permissions: {}
 
 jobs:
   run:
+    # Grant GITHUB_TOKEN the permissions required to make a gh-pages deployment
+    permissions:
+      contents: write  # to let mkdocs write the new docs
+      pages: write     # to deploy to Pages
+      id-token: write  # allow to generate an OpenID Connect (OIDC) token
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Set up Python 3
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
