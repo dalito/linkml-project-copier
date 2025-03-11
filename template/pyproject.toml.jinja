@@ -43,6 +43,10 @@ mkdocs-mermaid2-plugin = ">=1.1.1"
 jupyter = ">=1.0.0"
 mknotebooks = ">= 0.8.0"
 
+# Ref.: https://docs.pytest.org/en/stable/reference/reference.html#configuration-options
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
 skip = [
