@@ -22,4 +22,4 @@ jobs:
           persist-credentials: false
 
       - name: Run typos on repo
-        uses: crate-ci/typos@8951ef9cb569c860bc8f3f18070fbfaf65cdb349
+        uses: crate-ci/typos@b1a1ef3893ff35ade0cfa71523852a49bfd05d19
