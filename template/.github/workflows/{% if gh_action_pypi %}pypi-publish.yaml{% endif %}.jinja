@@ -31,7 +31,7 @@ jobs:
           persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55
         with:
           python-version: 3.9
 
@@ -49,7 +49,7 @@ jobs:
         run: poetry build
 
       - name: Store built distribution
-        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: distribution-files
           path: dist/
@@ -60,12 +60,12 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi-release
-      url: https://pypi.org/p/{{ project_slug }}
+      url: https://pypi.org/p/test_linkml_project_copier
     permissions:
       id-token: write  # this permission is mandatory for trusted publishing
     steps:
       - name: Download built distribution
-        uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806
+        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e
         with:
           name: distribution-files
           path: dist
