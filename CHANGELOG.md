@@ -17,14 +17,25 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.0...main)
 
+## Release [0.3.1] - 2025-04-04
+
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.0...0.3.1)
+
+[0.3.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.3.1
+
 ### Added
 
 - The `just gen-doc` command will now also build a merged schema (yaml).
-- The `just test` command will now also test all json test datafiles (in addition to yaml).
+- The `just test` command will now also test all json test datafiles (in addition to yaml). #79
 
 ### Fixed
 
-- Give docs-preview permission to publish messages in PR thread. #74
+- Give docs-preview required permission to publish messages in PR thread. #74
+- Correct lower Python boundary to 3.9 in template. #80
+
+### Changed
+
+- Applied April-2025 updates to dependencies of gh-actions. #80
 
 ## Release [0.3.0] - 2025-03-02
 
