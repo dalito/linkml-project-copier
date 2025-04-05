@@ -2,8 +2,6 @@
 
 extends: default
 
-locale: en_US.UTF-8  # Set the locale to avoid issues on Windows.
-
 rules:
   document-start: disable  # Don't check if document has a start marker (---).
   line-length:
