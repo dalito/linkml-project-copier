@@ -22,6 +22,7 @@ jobs:
       contents: write  # to let mkdocs write the new docs
       pages: write     # to deploy to Pages
       id-token: write  # allow to generate an OpenID Connect (OIDC) token
+      pull-requests: write  # add comment on the PR with the preview URL
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
