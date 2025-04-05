@@ -36,48 +36,22 @@ We assume that you have full internet access.
 
   LinkML tools are mainly written in Python, so you will need a recent Python interpreter to run this generator and to use the generated project.
 
-* **pipx**
+* **uv**
 
-  pipx is a tool for managing isolated Python-based applications. It is the recommended way to install the required tools.
-  To install pipx follow their [instructions](https://pypa.github.io/pipx/installation/).
-
-* **Poetry**
-
-  Poetry is a Python project management tool.
+  uv is a tool to manage Python projects and for managing isolated Python-based applications.
   You will use it in your generated project to manage dependencies and build distribution files.
-  Install Poetry by running:
-
-  ```shell
-  pipx install poetry
-  ```
-
-  This will install Poetry 2.x as required by this project.
-  If you also need Poetry 1.x for other projects, you can have both Poetry 2.x and Poetry 1.x installed at the same time.
-  pipx has the option to install another version with a suffix-modified name, here "poetry1",
-
-  ```shell
-  pipx install --suffix=1 "poetry<2.0"
-  ```
-
-* **Poetry Dynamic Versioning Plugin**:
-
-  This plugin automatically updates certain version strings in your generated project when you publish it.
-  Install it by running:
-
-  ```shell
-  pipx inject poetry "poetry-dynamic-versioning[plugin]"
-  ```
+  Install uv by following their [instructions](https://docs.astral.sh/uv/getting-started/installation/)
 
 * **copier**
 
   Copier is a tool for generating projects based on a template (like this one!).
   It also allows re-configuring the projects and to keep them updated when the original template changes.
   To insert dates into the template, copier requires [jinja2_time](https://github.com/hackebrot/jinja2-time) in the copier environment.
-  Install both with pipx by running:
+  Install both with `uv tool` by running:
 
   ```shell
-  pipx install copier
-  pipx inject copier jinja2_time
+  uv tool install copier
+  uv tool inject copier jinja2_time
   ```
 
 * **just**
@@ -86,7 +60,7 @@ We assume that you have full internet access.
   To execute these commands you need [just](https://github.com/casey/just) as command runner. Install it by running:
 
   ```shell
-  pipx install rust-just
+  uv tool install rust-just
   ```
 
 ## Creating a new project
@@ -136,7 +110,7 @@ Included are [yamllint](https://github.com/adrienverge/yamllint) for consistent 
 [ruff](https://docs.astral.sh/ruff/) for formatting and linting Python code and
 the spell checkers [codespell](https://github.com/codespell-project/codespell) and [typos](https://github.com/crate-ci/typos). To use this
 
-* install pre-commit with: `pipx install pre-commit`
+* install pre-commit with: `uv tool install pre-commit`
 * activate pre-commit in the project by running (at the root of the project): `pre-commit install`
 
 Once installed pre-commit will perform the checks on every commit and reject a commit if errors are found;
