@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/915838411.svg)](https://doi.org/10.5281/zenodo.15163584)
+
 # A Copier Template for LinkML Projects
 
 This template uses the code-scaffolding tool [copier](https://copier.readthedocs.io/) to create a [LinkML](https://github.com/linkml/linkml) project.
