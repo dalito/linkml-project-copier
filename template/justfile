@@ -199,6 +199,7 @@ _test-examples: _ensure_examples_output
 
 # Generate merged model
 _gen-yaml:
+  -mkdir -p docs/schema
   uv run gen-yaml {{source_schema_path}} > {{merged_schema_path}}
 
 # Run documentation server

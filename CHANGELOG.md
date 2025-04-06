@@ -30,6 +30,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 ### Fixed
 
 - Adjust docs-preview required permission to publish messages in PR thread.
+- Create directory `docs/schema` within `_gen-yaml` recipe if not present.
 
 ### Changed
 
