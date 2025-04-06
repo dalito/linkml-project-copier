@@ -26,6 +26,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 ### Added
 
 - New pre-commit command that updates the uv.lock file. #81
+- Automatic publishing of releases to Zenodo ([doi:10.5281/zenodo.15163584](https://doi.org/10.5281/zenodo.15163584)). #
 
 ### Fixed
 
