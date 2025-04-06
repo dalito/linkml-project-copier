@@ -15,7 +15,25 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 -->
 ## Unreleased
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.0...main)
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.0...main)
+
+## Release [0.4.0] - 2025-04-06
+
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.1...0.4.0)
+
+[0.4.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.4.0
+
+### Added
+
+- New pre-commit command that updates the uv.lock file. #81
+
+### Fixed
+
+- Adjust docs-preview required permission to publish messages in PR thread.
+
+### Changed
+
+- Migrate to new packaging/build tools: uv, uv-dynamic-versioning and hatch. #81
 
 ## Release [0.3.1] - 2025-04-04
 
