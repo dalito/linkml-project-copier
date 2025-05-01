@@ -17,9 +17,9 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@v4.2.2
         with:
           persist-credentials: false
 
       - name: Run typos on repo
-        uses: crate-ci/typos@3be83342e28b9421997e9f781f713f8dde8453d2
+        uses: crate-ci/typos@v1.31.2

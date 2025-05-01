@@ -17,6 +17,10 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.0...main)
 
+### Changed
+
+- Update github actions in project and change from hash version specifier to text. #86
+
 ## Release [0.4.0] - 2025-04-06
 
 [Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.1...0.4.0)

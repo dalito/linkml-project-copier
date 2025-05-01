@@ -7,7 +7,6 @@ on:  # yamllint disable-line rule:truthy
       - reopened
       - synchronize
 
-
 env:
   CLICOLOR: 1
 
@@ -26,19 +25,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
 
       - name: Install uv
-        uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182
+        uses: astral-sh/setup-uv@v6.0.1
         with:
           python-version: 3.12
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
       - name: Set up Python 3
-        uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: 3.12
 
@@ -51,7 +50,7 @@ jobs:
           touch site/.nojekyll
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@df22037db54ab6ee34d3c1e2b8810ac040a530c6
+        uses: rossjrw/pr-preview-action@v1.6.1
         with:
           source-dir: site/
           preview-branch: gh-pages
