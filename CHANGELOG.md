@@ -15,11 +15,22 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 -->
 ## Unreleased
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.0...main)
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.1...main)
+
+(nothing yet)
+
+## Release [0.4.1] - 2025-08-02
 
 ### Changed
 
+- Update to also test on Python 3.13 and use Python 3.13 as default in actions. #89
+- Update to use linkml >= 1.9.3 #89
+- Update github actions to latest versions. #89
 - Update github actions in project and change from hash version specifier to text. #86
+
+[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.0...0.4.1)
+
+[0.4.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.4.1
 
 ## Release [0.4.0] - 2025-04-06
 
