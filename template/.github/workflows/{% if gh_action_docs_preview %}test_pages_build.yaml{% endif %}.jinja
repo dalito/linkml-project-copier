@@ -37,6 +37,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # https://github.com/actions/setup-python
+      - name: Set up Python
+        uses: actions/setup-python@v6.0.0
+        with:
+          {% raw %}
+          python-version: ${{ matrix.pyversion }}
+          {% endraw %}
       # https://github.com/astral-sh/setup-uv
       - name: Install uv
         uses: astral-sh/setup-uv@v7.1.2
@@ -47,19 +54,16 @@ jobs:
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
-      # https://github.com/actions/setup-python
-      - name: Set up Python 3
-        uses: actions/setup-python@v6.0.0
-        with:
-          {% raw %}
-          python-version: ${{ matrix.pyversion }}
-          {% endraw %}
+      - name: Install just
+        run: |
+          uv tool install rust-just
 
       - name: Install dependencies
         run: uv sync --dev --no-progress
 
       - name: Build documentation
         run: |
+          just gen-doc
           uv run mkdocs build -d site
           touch site/.nojekyll
 
