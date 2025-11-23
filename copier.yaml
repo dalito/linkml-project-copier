@@ -85,7 +85,7 @@ gh_action_docs_preview:
   help: |
     Use GitHub actions for a documentation preview in pull requests?
   type: bool
-  default: false
+  default: true
 
 # === copier configuration options ===
 # https://copier.readthedocs.io/en/stable/configuring/#available-settings
