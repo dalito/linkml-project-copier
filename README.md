@@ -190,7 +190,7 @@ The commands are written to be run at the root of your project.
 * Adapt your project and create a copier answers file (`.copier-answers`) by running (this updates to the latest released version):
 
   ```shell
-  copier copy --trust gh:dalito/linkml-project-copier .
+  copier copy --trust gh:linkml/linkml-project-copier .
   ```
 
   * **Starting from a linkml-project-cookiecutter based project**:
@@ -200,7 +200,7 @@ The commands are written to be run at the root of your project.
     The command for migrating to a specific tag/release is:
 
     ```shell
-    copier copy --trust --vcs-ref v0.1.7 gh:dalito/linkml-project-copier .
+    copier copy --trust --vcs-ref v0.1.7 gh:linkml/linkml-project-copier .
     ```
 
     Look into the `.cruft.json` file to find out which values you chose when you created your original project.
