@@ -15,7 +15,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 -->
 ## Unreleased
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.1...main)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.4.1...main)
 
 ### Fixed
 
@@ -30,15 +30,15 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 - Update github actions to latest versions. #89
 - Update github actions in project and change from hash version specifier to text. #86
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.4.0...0.4.1)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.4.0...v0.4.1)
 
-[0.4.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.4.1
+[0.4.1]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.4.1
 
 ## Release [0.4.0] - 2025-04-06
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.1...0.4.0)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.3.1...v0.4.0)
 
-[0.4.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.4.0
+[0.4.0]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.4.0
 
 ### Added
 
@@ -56,9 +56,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ## Release [0.3.1] - 2025-04-04
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.3.0...0.3.1)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.3.0...v0.3.1)
 
-[0.3.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.3.1
+[0.3.1]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.3.1
 
 ### Added
 
@@ -76,9 +76,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ## Release [0.3.0] - 2025-03-02
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...0.3.0)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.2.2...v0.3.0)
 
-[0.3.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.3.0
+[0.3.0]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.3.0
 
 ### Added
 
@@ -109,9 +109,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ## Release [0.2.2] - 2025-02-17
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.2...v0.2.1)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.2.2...v0.2.1)
 
-[0.2.2]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.2.2
+[0.2.2]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.2.2
 
 ### Changed
 
@@ -124,9 +124,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ## Release [0.2.1] - 2025-02-16
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.1...v0.2.0)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.2.1...v0.2.0)
 
-[0.2.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.2.1
+[0.2.1]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.2.1
 
 ### Added
 
@@ -158,9 +158,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 ## Release [0.2.0] - 2025-02-13
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.2.0...v0.1.6) relative to v0.1.6 since this was the base of v0.2.0.
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.2.0...v0.1.6) relative to v0.1.6 since this was the base of v0.2.0.
 
-[0.2.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.2.0
+[0.2.0]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.2.0
 
 ### Highlights ⚡
 
@@ -190,9 +190,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.7] - 2025-02-13
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.7...v0.1.6)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.7...v0.1.6)
 
-[0.1.7]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.7
+[0.1.7]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.7
 
 ### Fixed
 
@@ -200,9 +200,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.6] - 2025-02-12
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.6...v0.1.5)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.6...v0.1.5)
 
-[0.1.6]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.6
+[0.1.6]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.6
 
 ### Added
 
@@ -218,9 +218,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.5] - 2025-02-08
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.5...v0.1.4)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.5...v0.1.4)
 
-[0.1.5]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.5
+[0.1.5]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.5
 
 ### Fixed
 
@@ -228,9 +228,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.4] - 2025-02-08
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.4...v0.1.3)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.4...v0.1.3)
 
-[0.1.4]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.4
+[0.1.4]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.4
 
 ### Fixed
 
@@ -238,9 +238,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.3] - 2025-02-08
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.3...v0.1.2)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.3...v0.1.2)
 
-[0.1.3]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.3
+[0.1.3]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.3
 
 ### Fixed
 
@@ -248,9 +248,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.2] - 2025-02-06
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.2...v0.1.1)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.2...v0.1.1)
 
-[0.1.2]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.2
+[0.1.2]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.2
 
 ### Added
 
@@ -258,9 +258,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.1] - 2025-02-06
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/compare/v0.1.1...v0.1.0)
+[Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.1.1...v0.1.0)
 
-[0.1.1]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.1
+[0.1.1]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.1
 
 ### Added
 
@@ -274,9 +274,9 @@ Most changes were made in one PR (#31) followed by fixups in #42 and #44.
 
 ## Release [0.1.0] - 2025-01-19
 
-[Full changelog](https://github.com/dalito/linkml-project-copier/commits/v0.1.0)
+[Full changelog](https://github.com/linkml/linkml-project-copier/commits/v0.1.0)
 
-[0.1.0]: https://github.com/dalito/linkml-project-copier/releases/tag/v0.1.0
+[0.1.0]: https://github.com/linkml/linkml-project-copier/releases/tag/v0.1.0
 
 **First release of a new [copier](https://copier.readthedocs.io/en/stable/)-based [LinkML](https://linkml.io/linkml)-project template.**
 
