@@ -10,3 +10,7 @@ updates:
       - "/template/.github/workflows"
     schedule:
       interval: monthly
+    groups:
+      github-actions:
+        patterns:
+          - "*"
