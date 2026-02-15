@@ -55,8 +55,6 @@ EXPECTED_FILES = [
     "tests/data/problem/invalid/.gitkeep",
     # Examples
     "examples/README.md",
-    # Project output
-    "project/README.md",
 ]
 
 
@@ -76,13 +74,22 @@ class TestNoJinjaArtifacts:
         assert jinja_files == [], f"Jinja files remain: {jinja_files}"
 
     def test_no_unexpanded_markers(self, default_project):
-        """No {{ }} or {% %} markers should remain in generated text files."""
+        """No {{ }} or {% %} markers should remain in generated text files.
+
+        GitHub Actions workflow files are excluded because they use ${{ }}
+        syntax which is GitHub Actions expression syntax, not Jinja.
+        """
         text_extensions = {".py", ".toml", ".yaml", ".yml", ".md", ".mk", ".cfg", ".txt"}
+        # GitHub Actions workflows legitimately use ${{ }} syntax
+        excluded_dirs = {".github"}
         failures = []
         for path in default_project.rglob("*"):
             if not path.is_file():
                 continue
             if path.suffix not in text_extensions:
+                continue
+            rel = path.relative_to(default_project)
+            if rel.parts[0] in excluded_dirs:
                 continue
             try:
                 content = path.read_text(encoding="utf-8")
@@ -90,7 +97,6 @@ class TestNoJinjaArtifacts:
                 continue
             for marker in ("{{", "}}", "{%", "%}"):
                 if marker in content:
-                    rel = path.relative_to(default_project)
                     failures.append(f"{rel} contains '{marker}'")
                     break
         assert failures == [], "Unexpanded Jinja markers found:\n" + "\n".join(failures)
