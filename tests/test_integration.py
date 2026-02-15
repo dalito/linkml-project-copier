@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from conftest import generate_project, git_init, run_just
+from tests.helpers import generate_project, git_init, run_just
 
 pytestmark = pytest.mark.integration
 
