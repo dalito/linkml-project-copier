@@ -128,6 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# uv lock file (not needed for the template repo itself)
+uv.lock
+
 # pycharm
 .idea
 # Local vscode editor config

@@ -1,0 +1,18 @@
+[project]
+name = "linkml-project-copier"
+version = "0.0.0"
+requires-python = ">=3.10"
+
+[dependency-groups]
+test = [
+    "copier>=9.4.0",
+    "jinja2-time",
+    "pytest>=8.0",
+    "pyyaml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: tests that run just commands in generated projects (slow)",
+]
