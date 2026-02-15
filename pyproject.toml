@@ -9,6 +9,7 @@ test = [
     "jinja2-time",
     "pytest>=8.0",
     "pyyaml",
+    "tomli>=2.0; python_version < '3.11'",
 ]
 
 [tool.pytest.ini_options]

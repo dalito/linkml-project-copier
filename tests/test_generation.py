@@ -2,8 +2,18 @@
 
 from __future__ import annotations
 
+import sys
+
 import yaml
 import pytest
+
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    try:
+        import tomllib
+    except ModuleNotFoundError:
+        import tomli as tomllib
 
 
 # Files expected in a default project (add_example=True, all actions enabled)
@@ -107,8 +117,6 @@ class TestPyprojectToml:
 
     @pytest.fixture(scope="class")
     def pyproject(self, default_project):
-        import tomllib
-
         return tomllib.loads((default_project / "pyproject.toml").read_text(encoding="utf-8"))
 
     def test_project_name(self, pyproject):
