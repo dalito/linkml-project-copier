@@ -1,8 +1,3 @@
-[project]
-name = "linkml-project-copier"
-version = "0.0.0"
-requires-python = ">=3.10"
-
 [dependency-groups]
 test = [
     "copier>=9.4.0",
