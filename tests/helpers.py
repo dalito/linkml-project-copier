@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -77,10 +78,13 @@ def git_init(project_dir: Path) -> None:
 
 def run_just(project_dir: Path, *args: str, timeout: int = 600) -> subprocess.CompletedProcess:
     """Run a just command in the given project directory."""
+    # Remove VIRTUAL_ENV so the generated project's uv uses its own .venv
+    env = {k: v for k, v in os.environ.items() if k != "VIRTUAL_ENV"}
     return subprocess.run(
         ["just", *args],
         cwd=project_dir,
         capture_output=True,
         text=True,
         timeout=timeout,
+        env=env,
     )

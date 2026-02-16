@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import sys
+
 import pytest
 
 from tests.helpers import generate_project, git_init, run_just
@@ -33,6 +35,10 @@ def test_just_install(integration_project):
     )
 
 
+@pytest.mark.skipif(
+    sys.version_info >= (3, 13),
+    reason="linkml's ShEx generator crashes on Python 3.13 (pyjsg incompatibility)",
+)
 def test_just_test(integration_project):
     result = run_just(integration_project, "test")
     assert result.returncode == 0, (
