@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import json
+import os
+import subprocess
 import sys
 
 import pytest
@@ -47,9 +50,28 @@ def test_just_test(integration_project):
 
 
 def test_just_lint(integration_project):
+    # just lint exits 1 on warnings, 2 on errors — only errors are failures
     result = run_just(integration_project, "lint")
-    assert result.returncode == 0, (
-        f"just lint failed:\nstdout: {result.stdout}\nstderr: {result.stderr}"
+    assert result.returncode < 2, (
+        f"just lint found errors:\nstdout: {result.stdout}\nstderr: {result.stderr}"
+    )
+
+    # Verify exact warning/error counts via JSON output
+    env = {k: v for k, v in os.environ.items() if k != "VIRTUAL_ENV"}
+    lint_json = subprocess.run(
+        ["uv", "run", "linkml-lint", "--format", "json", "src/test_schema/schema"],
+        cwd=integration_project,
+        capture_output=True,
+        text=True,
+        timeout=120,
+        env=env,
+    )
+    problems = json.loads(lint_json.stdout)
+    errors = [p for p in problems if p["level"] == "error"]
+    warnings = [p for p in problems if p["level"] == "warning"]
+    assert len(errors) == 0, f"Expected 0 lint errors, got {len(errors)}: {errors}"
+    assert len(warnings) == 4, (
+        f"Expected 4 lint warnings, got {len(warnings)}: {warnings}"
     )
 
 
