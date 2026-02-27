@@ -11,10 +11,10 @@ see_also:
 prefixes:
   {{project_slug}}: https://w3id.org/{{github_org}}/{{project_name}}/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
+  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
-  example: https://example.org/
+  example: http://www.example.org/rdf#
 default_prefix: {{project_slug}}
 default_range: string
 
@@ -83,6 +83,8 @@ slots:
 
 enums:
   PersonStatus:
+    description:
+      The vital status of a person
     permissible_values:
       ALIVE:
         description: the person is living

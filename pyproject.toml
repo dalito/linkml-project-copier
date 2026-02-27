@@ -1,0 +1,14 @@
+[dependency-groups]
+test = [
+    "copier>=9.4.0",
+    "jinja2-time",
+    "pytest>=8.0",
+    "pyyaml",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: tests that run just commands in generated projects (slow)",
+]
