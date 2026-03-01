@@ -107,12 +107,14 @@ Included are [yamllint](https://github.com/adrienverge/yamllint) for consistent 
 [ruff](https://docs.astral.sh/ruff/) for formatting and linting Python code and
 the spell checkers [codespell](https://github.com/codespell-project/codespell) and [typos](https://github.com/crate-ci/typos). To use this
 
-* install pre-commit with: `uv tool install pre-commit`
+* install pre-commit with: `uv tool install pre-commit --with pre-commit-uv`
 * activate pre-commit in the project by running (at the root of the project): `pre-commit install`
 
 Once installed pre-commit will perform the checks on every commit and reject a commit if errors are found;
 it will even auto-correct several types of errors.
-You can also run the pre-configured checks manually with `pre-commit run -a`.
+The installation with [pre-commit-uv](https://pypi.org/project/pre-commit-uv/) is optional but recommended as it accelearates the initial seed operation.
+
+Alternatively you can run the pre-configured checks manually with `pre-commit run -a`.
 
 ### Step 4: Validate the schema
 
