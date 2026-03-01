@@ -6,6 +6,8 @@ repos:
     hooks:
       - id: check-toml
       - id: check-yaml
+        # mkdocs.yml uses !!python/name tags unsupported by the safe YAML loader
+        exclude: ^mkdocs\.yml$
       - id: end-of-file-fixer
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
@@ -24,13 +26,13 @@ repos:
           - tomli
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.42.3
+    rev: v1.44.0
     hooks:
       - id: typos
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.14.14
+    rev: v0.15.4
     hooks:
       # Run the linter.
       - id: ruff
