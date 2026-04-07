@@ -89,6 +89,7 @@ Optionally customize your project if needed:
 
 * pass arguments to linkml generators via 'config.yaml' configuration file;
 * pass supported environment variables via '.env.public' configuration file;
+* Set 'export JUST_TEMPDIR=/tmp' on WSL2.
 
 Setup your project
 
@@ -96,7 +97,6 @@ Setup your project
 cd my-awesome-schema  # using the folder example above
 just setup
 ```
-Note: Command `JUST_TEMPDIR=/tmp just setup` may be needed in certain cases [ref](https://github.com/casey/just/?tab=readme-ov-file#script-and-shebang-recipe-temporary-files).
 
 ### Step 3: Edit the schema
 
