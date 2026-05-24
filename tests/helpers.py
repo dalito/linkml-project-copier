@@ -19,6 +19,7 @@ DEFAULT_DATA = {
     "full_name": "Test User",
     "github_org": "test-org",
     "project_description": "A test project.",
+    "existing_license_file": "",
     "license": "MIT",
     "copyright_year": "2025",
     "add_example": True,
