@@ -48,10 +48,8 @@ project_description:
 
 existing_license_file:
   help: |
-    If your project already has a license file, give its path relative to the
-    project root (e.g. LICENSE.md, LICENSE.txt). Leave empty to generate a new
-    LICENSE file from the license chosen below. The SPDX identifier is
-    recorded in pyproject.toml either way.
+    Path to an existing license file you want to keep (e.g. LICENSE.md, LICENCE.txt).
+    Leave empty to generate one for the license you pick next.
   type: str
   default: ""
 
