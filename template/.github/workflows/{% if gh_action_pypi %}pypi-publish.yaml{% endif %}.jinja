@@ -40,18 +40,14 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7.1.2
         with:
-          {% raw %}
-          python-version: ${{ matrix.pyversion }}
-          {% endraw %}
+          {% raw %}python-version: ${{ matrix.pyversion }}{% endraw %}
           enable-cache: true
 
       # https://github.com/actions/setup-python
       - name: Set up Python
         uses: actions/setup-python@v6.0.0
         with:
-          {% raw %}
-          python-version: ${{ matrix.pyversion }}
-          {% endraw %}
+          {% raw %}python-version: ${{ matrix.pyversion }}{% endraw %}
 
       - name: Install just
         run: |

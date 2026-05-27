@@ -41,16 +41,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6.0.0
         with:
-          {% raw %}
-          python-version: ${{ matrix.pyversion }}
-          {% endraw %}
+          {% raw %}python-version: ${{ matrix.pyversion }}{% endraw %}
       # https://github.com/astral-sh/setup-uv
       - name: Install uv
         uses: astral-sh/setup-uv@v7.1.2
         with:
-          {% raw %}
-          python-version: ${{ matrix.pyversion }}
-          {% endraw %}
+          {% raw %}python-version: ${{ matrix.pyversion }}{% endraw %}
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
