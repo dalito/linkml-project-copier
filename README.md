@@ -209,6 +209,11 @@ The commands are written to be run at the root of your project.
     Be sure to enter the same values when answering the copier questions.
 
 * Carefully review the changes that copier made to your project.
+* Pay particular attention to linter and formatter configurations — the template ships
+  rules in `.pre-commit-config.yaml`, `.yamllint.yaml`, `.editorconfig`, and the
+  `[tool.ruff]` / `[tool.codespell]` / `[tool.typos]` sections of `pyproject.toml`.
+  You'll likely want to merge the template's settings with your existing setup rather
+  than accept either side wholesale.
 * If you used a cruft/cookiecutter template before, you may delete the cruft file `.cruft.json`.
 * If you are happy, commit all changes to the `migrate-to-copier` branch.
 * To finalise the migration, merge the `migrate-to-copier` branch to your main branch.
