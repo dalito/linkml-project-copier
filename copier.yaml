@@ -46,17 +46,29 @@ project_description:
   type: str
   default: This is the project description.
 
+existing_license_file:
+  help: |
+    Path to an existing license file you want to keep (e.g. LICENSE.md, LICENCE.txt).
+    Leave empty to generate one for the license you pick next.
+  type: str
+  default: ""
+
 license:
-  help: Which license do you want for your project?
+  help: |
+    Which license do you want for your project? Pick "Custom" if you supplied an
+    existing license file above whose content does not match any of the listed
+    SPDX licenses; that records the PEP 639 identifier `LicenseRef-Custom` in
+    pyproject.toml, signalling "see the license file".
   type: str
   choices:
-    - MIT
-    - BSD-3-Clause
-    - Apache-2.0
-    - MPL-2.0
-    - LGPL-3.0-only
-    - GPL-3.0-only
-  default: MIT
+    Apache-2.0: Apache-2.0
+    MIT: MIT
+    BSD-3-Clause: BSD-3-Clause
+    MPL-2.0: MPL-2.0
+    LGPL-3.0-only: LGPL-3.0-only
+    GPL-3.0-only: GPL-3.0-only
+    Custom: LicenseRef-Custom
+  default: "{{ 'LicenseRef-Custom' if existing_license_file else 'Apache-2.0' }}"
 
 copyright_year:
   help: The year of the first release

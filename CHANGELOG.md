@@ -17,6 +17,20 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0
 
 [Full changelog](https://github.com/linkml/linkml-project-copier/compare/v0.4.1...main)
 
+### Changed
+
+- Default `license` is now `Apache-2.0` (was `MIT`). #151
+
+### Added
+
+- New `existing_license_file` prompt: when set to the path of a license file
+  already present in the project (e.g. `LICENSE.md`, `LICENSE.txt`), the
+  template skips generating a new `LICENSE` and points `license-files` in
+  `pyproject.toml` at the provided file. The `license` prompt then defaults to
+  `Custom` (recorded as the PEP 639 SPDX identifier `LicenseRef-Custom`),
+  signalling "see the license file"; the user can override with a specific
+  SPDX identifier if they know it. #151
+
 ### Fixed
 
 - Fix `uv tool` command that includes jinja2-time into copier. #90

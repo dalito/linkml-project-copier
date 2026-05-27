@@ -9,7 +9,7 @@ authors = [
   {name = "{{full_name}}", email = "{{email}}"},
 ]
 license = "{{license}}"
-license-files = ["LICENSE"]
+license-files = ["{{ existing_license_file or 'LICENSE' }}"]
 readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["version"]

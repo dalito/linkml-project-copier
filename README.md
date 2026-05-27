@@ -75,6 +75,11 @@ The `--trust` option is needed because the template uses the jinja_extension `ji
 You will be prompted a few questions.
 The defaults are fine for most projects, but pick the name for your project carefully as it will also be used as project name on GitHub.
 
+If you are applying the template to an existing project that already has a license file (e.g. `LICENSE.md`, `LICENSE.txt`), answer the `existing_license_file` prompt with its path.
+The template will then leave your file untouched, skip generating a new `LICENSE`, and point `license-files` in `pyproject.toml` at the file you named.
+The `license` prompt will default to `Custom` in that case, recorded as the PEP 639 identifier `LicenseRef-Custom`; override it if you know the file's actual SPDX license.
+The default license for new projects is `Apache-2.0`.
+
 It is also possible to use non-default branches or specific tags via `--vcs-ref` which is useful when developing the template:
 
 ```shell
